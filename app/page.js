@@ -52,7 +52,7 @@ export default function Homepage() {
   return (
     <div className=" w-full  px-4 pt-8 max-w-6xl mx-auto">
       <div className="grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-2 gap-5 grid-flow-row-dense">
-        <motion.div
+        <div
           drag
           dragConstraints={{ left: 0, top: 0, right: 0, bottom: 0 }}
           dragElastic={1}
@@ -71,7 +71,7 @@ export default function Homepage() {
             src={theme == "dark" ? "/lightm.bmp" : "/map.webp"}
             alt=""
           />
-        </motion.div>
+        </div>
         <div className="dark:bg-[#1E1E1E] bg-white border dark:border-neutral-600 border-neutral-400/60 shadow-xl relative rounded-lg sm:h-40  ">
           <div className=" absolute w-full p-2">
             <div className="flex justify-between items-center ">
@@ -112,7 +112,7 @@ export default function Homepage() {
             </div>
           </div>
         </div>
-        <motion.div
+        <div
           drag
           dragConstraints={{ left: 0, top: 0, right: 0, bottom: 0 }}
           dragElastic={1}
@@ -127,7 +127,7 @@ export default function Homepage() {
           </div>
 
           <div className="mt-14 px-3 pb-3">
-            <p className="text-xs font-semibold   leading-5">
+            <p className="text-xs font-semibold leading-5">
               I'm Martin Coll, a FullStack Developer living in Argentina.
               Looking for awesome projects to work on. I'm a self-taught
               developer and I'm always learning new things. I have experience
@@ -135,7 +135,7 @@ export default function Homepage() {
               and more. Let's work together!
             </p>
           </div>
-        </motion.div>
+        </div>
         <div className="dark:bg-[#1E1E1E] bg-white border dark:border-neutral-600 border-neutral-400/60 shadow-xl rounded-lg col-span-2 row-span-2 relative  overflow-hidden  ">
           <div className=" absolute w-full p-2 z-20">
             <p className="text-xs">Experience</p>
@@ -309,7 +309,7 @@ export default function Homepage() {
             </button>
           </div>
         </div>
-        <motion.div
+        <div
           drag
           dragConstraints={{ left: 0, top: 0, right: 0, bottom: 0 }}
           dragElastic={1}
@@ -337,9 +337,9 @@ export default function Homepage() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
         <div className="  rounded-lg  grid grid-cols-2 gap-2 col-span-2 row-span-2 z-40">
-          <motion.div
+          <div
             drag
             dragConstraints={{ left: 0, top: 0, right: 0, bottom: 0 }}
             dragElastic={1}
@@ -352,7 +352,7 @@ export default function Homepage() {
             <div className="mt-10  w-full flex justify-center items-center">
               <h1 className="text-8xl">4</h1>
             </div>
-          </motion.div>
+          </div>
           <div className="dark:bg-[#1E1E1E] bg-white border dark:border-neutral-600 border-neutral-400/60 shadow-xl rounded-lg h-44 p-2 relative z-40">
             <div>
               <div className=" absolute w-full p-2 z-20">
