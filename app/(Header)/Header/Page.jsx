@@ -1,0 +1,237 @@
+"use client";
+
+import React from "react";
+
+import { AnimatePresence, motion, useCycle } from "framer-motion";
+
+import { useState } from "react";
+
+import { useTheme } from "next-themes";
+import { PiArrowRightThin } from "react-icons/pi";
+import Image from "next/image";
+import Link from "next/link";
+
+function HeaderPage() {
+  const [open, cycleOpen] = useCycle(false, true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [hoverTheme, setHovertheme] = useState(null);
+  const { theme, systemTheme, setTheme } = useTheme();
+
+  const links = [
+    { name: "/jo1.jpeg", theme: "dark" },
+    { name: "/jo2.jpeg", theme: "light" },
+    { name: "/jo3.jpeg", theme: "system" },
+  ];
+
+  const upworkImg = [
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 102 28"
+      role="img"
+      aria-hidden="true"
+    >
+      <path
+        fill="#14a800"
+        d="M28.18,19.06A6.54,6.54,0,0,1,23,16c.67-5.34,2.62-7,5.2-7s4.54,2,4.54,5-2,5-4.54,5m0-13.34a7.77,7.77,0,0,0-7.9,6.08,26,26,0,0,1-1.93-5.62H12v7.9c0,2.87-1.3,5-3.85,5s-4-2.12-4-5l0-7.9H.49v7.9A8.61,8.61,0,0,0,2.6,20a7.27,7.27,0,0,0,5.54,2.35c4.41,0,7.5-3.39,7.5-8.24V8.77a25.87,25.87,0,0,0,3.66,8.05L17.34,28h3.72l1.29-7.92a11,11,0,0,0,1.36,1,8.32,8.32,0,0,0,4.14,1.28h.34A8.1,8.1,0,0,0,36.37,14a8.12,8.12,0,0,0-8.19-8.31"
+      ></path>
+      <path
+        fill="#14a800"
+        d="M80.8,7.86V6.18H77.2V21.81h3.65V15.69c0-3.77.34-6.48,5.4-6.13V6c-2.36-.18-4.2.31-5.45,1.87"
+      ></path>
+      <polygon
+        fill="#14a800"
+        points="55.51 6.17 52.87 17.11 50.05 6.17 45.41 6.17 42.59 17.11 39.95 6.17 36.26 6.17 40.31 21.82 44.69 21.82 47.73 10.71 50.74 21.82 55.12 21.82 59.4 6.17 55.51 6.17"
+      ></polygon>
+      <path
+        fill="#14a800"
+        d="M67.42,19.07c-2.59,0-4.53-2.05-4.53-5s2-5,4.53-5S72,11,72,14s-2,5-4.54,5m0-13.35A8.1,8.1,0,0,0,59.25,14,8.18,8.18,0,1,0,75.6,14a8.11,8.11,0,0,0-8.18-8.31"
+      ></path>
+      <path
+        fill="#14a800"
+        d="M91.47,14.13h.84l5.09,7.69h4.11l-5.85-8.53a7.66,7.66,0,0,0,4.74-7.11H96.77c0,3.37-2.66,4.65-5.3,4.65V0H87.82V21.82h3.64Z"
+      ></path>
+    </svg>,
+  ];
+
+  const itemVariants = {
+    closed: {
+      opacity: 0,
+    },
+    open: { opacity: 1 },
+  };
+
+  const sideVariants = {
+    closed: {
+      transition: {
+        staggerChildren: 0.1,
+        staggerDirection: -1,
+      },
+    },
+    open: {
+      transition: {
+        staggerChildren: 0.1,
+        staggerDirection: 1,
+      },
+    },
+  };
+
+  const ButtonVariant = {
+    closed: {
+      height: "1.6rem",
+      transition: { duration: 0.4 },
+    },
+
+    open: {
+      height: "3.7rem",
+      transition: { when: "beforeChildren", duration: 0.4 },
+    },
+  };
+
+  let textvariant = {
+    hidden: {
+      opacity: 0,
+    },
+    show: {
+      opacity: 1,
+    },
+  };
+
+  const handleClick = () => {
+    setIsOpen(!isOpen);
+    cycleOpen(!open);
+  };
+
+  const handleTheme = (newTheme) => {
+    // setTheme(newTheme);
+    cycleOpen(!open);
+
+    if (newTheme === "system") {
+      setHovertheme(" System Theme");
+      setTheme(newTheme);
+    } else if (newTheme === "light") {
+      setHovertheme(" System Theme");
+      setTheme(newTheme);
+    } else if (newTheme === "dark") {
+      setHovertheme(" System Theme");
+      setTheme(newTheme);
+    }
+  };
+  {
+    /* DF1B89 */
+  }
+  return (
+    <div className="">
+      {/* <i className="fi fi-rr-cart-arrow-down"></i> */}
+
+      <AnimatePresence>
+        <motion.header
+          key="parent"
+          variants={ButtonVariant}
+          initial="closed"
+          animate={open ? "open" : "closed"}
+          exit={{
+            height: 0,
+            transition: { delay: 0.7, duration: 0.3 },
+          }}
+          className="mx-auto w-full z-50 flex justify-center fixed top-0 "
+        >
+          <div className="cursor-pointer bg-[#343434]    hover:text-neutral-700 border-neutral-600 border border-t-0  w-[110px] flex-col overflow-hidden rounded-b-xl break-all ">
+            <div
+              onClick={handleClick}
+              className="text-[12px] text-center mt-1 text-neutral-200 group-hover/sidebar:opacity-100 transition-all font-bold ease-out duration-700 "
+            >
+              {hoverTheme ? (
+                <p className="transition-all font-bold ease-out duration-700">
+                  {hoverTheme}
+                </p>
+              ) : (
+                <p className="transition-all font-bold ease-out duration-700">
+                  Switch Theme
+                </p>
+              )}
+            </div>
+
+            {/*  */}
+
+            <div className="bg-[#161616] overflow-hidden  h-fit rounded-xl mt-1">
+              {open && (
+                <div className="gap-x-1 flex justify-center">
+                  {links.map(({ name, theme }, index) => {
+                    const isActive = index === activeIndex;
+                    return (
+                      <>
+                        <motion.div
+                          key={index}
+                          onClick={() => setActiveIndex(index)}
+                          onMouseEnter={() => setActiveIndex(index)}
+                          className=" relative rounded-md text-neutral-400 flex  transition-all ease-in duration-200    "
+                        >
+                          {isActive && (
+                            <motion.span
+                              layoutId="highlight"
+                              className="dark:bg-[#ffffff] bg-yellow-500 w-fit top-0 border border-neutral-700/40   absolute inset-0 z-[2] rounded-2xl"
+                            ></motion.span>
+                          )}
+
+                          <Image
+                            width={200}
+                            height={200}
+                            onClick={() => handleTheme(theme)}
+                            onMouseEnter={() => setHovertheme(theme)}
+                            onMouseLeave={() => setHovertheme(null)}
+                            className="w-8 h-8 opacity-25 duration-500 transition-all ease-in hover:opacity-100 object-cover rounded-full"
+                            src={name}
+                            alt=""
+                          />
+                        </motion.div>
+                      </>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
+        </motion.header>
+      </AnimatePresence>
+
+      <nav className="flex justify-between items-center w-full  px-4 pt-10 max-w-6xl mx-auto">
+        <div className="flex gap-x-3 items-center">
+          <Image
+            width={200}
+            height={200}
+            className="w-10 h-10 rounded-full object-cover"
+            src="/jo3.png"
+            alt=""
+          />
+
+          <div>
+            <h4 className="text-xs ">Martin Coll</h4>
+            <p className="text-[#828282] text-xs">
+              Full Stack & Android Developer
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <button className="flex w-40 items-center justify-between border border-neutral-600 rounded-full p-1 px-5">
+            <a
+              target="_blank"
+              href="https://www.upwork.com/freelancers/~01c67880a7f794eaa8"
+              rel="noopener noreferrer"
+            >
+              <p className="text-[#828282] text-xs">Upwork </p>
+            </a>
+            <PiArrowRightThin />
+          </button>
+        </div>
+      </nav>
+
+      <div className="mx-auto w-full max-w-[1120px] mt-4 flex justify-center relative">
+        <div className="w-full h-[0.4px] dark:bg-neutral-600 bg-neutral-400/60 mt-1 top-7  " />
+      </div>
+    </div>
+  );
+}
+
+export default HeaderPage;
