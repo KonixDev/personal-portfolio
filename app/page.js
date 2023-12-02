@@ -150,7 +150,7 @@ export default function Homepage() {
             {/* Starts */}
 
             {jobs?.map((job) => (
-              <div className="flex gap-x-3 m-4 px-2 py-4  ">
+              <div className="flex gap-x-3 m-4 px-2 py-4" key={job.attributes.Link}>
                 <div>
                   <p className="dark:text-neutral-400  text-xs w-20 shrink-0  ">
                     {job.attributes.YearTo}
@@ -192,6 +192,7 @@ export default function Homepage() {
           <div className="overflow-y-auto h-[340px] overflow-hidden scrollbar-hide scroll-smooth relative mt-7">
             {projects?.map((project) => (
               <a
+                key={project.attributes.Title}
                 href={project.attributes.Link}
                 target="_blank"
                 rel="noopener noreferrer"
