@@ -102,7 +102,7 @@ export default function Homepage() {
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="mailto:contacto@martincol.dev"
+                  href="mailto:contacto@martincoll.dev"
                 >
                   Send me a email
                 </a>
