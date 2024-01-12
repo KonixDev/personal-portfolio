@@ -30,7 +30,7 @@ const AboutMe = () => {
 
               <div className="p-8 sm:p-16 lg:p-24">
                 <h2 className="text-2xl font-bold sm:text-3xl text-black">
-                  👋 My name is{" "}
+                  👋 My name is {" "}
                   <span className="text-blue-600">Martín Coll</span>
                 </h2>
 
@@ -45,7 +45,7 @@ const AboutMe = () => {
                   href="#"
                   className="mt-8 inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
                 >
-                  Get in Touch
+                  Get in Touch {" "}
                 </a>
               </div>
             </div>

@@ -14,10 +14,7 @@ const Footbar = () => {
 
           <form className="mt-6">
             <div className="relative max-w-lg">
-              <label className="sr-only" for="email">
-                {" "}
-                Email{" "}
-              </label>
+              <label className="sr-only"> Email </label>
 
               <input
                 className="w-full rounded-full border-gray-200 bg-gray-100 dark:text-black p-4 pe-32 text-sm font-medium"
