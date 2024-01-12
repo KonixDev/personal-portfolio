@@ -6,6 +6,7 @@ import Hero from "@/components/shared/sections/Hero";
 import Projects from "@/components/shared/sections/Projects";
 import TechStack from "@/components/shared/sections/TechStack";
 import React from "react";
+import ChatUI from "@/components/shared/ChatUI";
 
 const Page = () => {
   return (
@@ -20,6 +21,7 @@ const Page = () => {
       <AboutMe />
       <Divider />
       <Footbar />
+ 
     </>
   );
 };

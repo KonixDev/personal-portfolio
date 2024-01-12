@@ -24,6 +24,8 @@ const Footbar = () => {
                 id="email"
                 type="email"
                 value={"contacto@martincoll.dev"}
+                disabled={true}
+                defaultValue={"contacto@martincoll.dev"}
                 placeholder="john@doe.com"
               />
 
@@ -31,7 +33,7 @@ const Footbar = () => {
                 className="absolute end-1 top-1/2 -translate-y-1/2 rounded-fullpx-5 py-3 text-sm font-medium text-black dark:text-white transition me-2"
                 variant={"outline"}
               >
-                <a href="contacto@martincoll.dev">Send Email</a>
+                <a href="mailto:contacto@martincoll.dev">Send Email</a>
               </Button>
             </div>
           </form>
