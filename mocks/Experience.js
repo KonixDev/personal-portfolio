@@ -6,7 +6,7 @@ const items = [
     children: (
       <>
         <TimelineItemDescription>Venedicto Team</TimelineItemDescription>
-        <TimelineItemDescription>2023 - 2024</TimelineItemDescription>
+        <TimelineItemDescription>2023 - Present</TimelineItemDescription>
         <ul>
           <li>
             ● Improved system performance by introducing Redis as a high-speed
