@@ -1,0 +1,5 @@
+.root {
+    background: linear-gradient(180deg,#000 30%,#111 50%,#111 100%);
+    border-bottom: 1px solid #333;
+    padding: 0 16px 96px 16px;
+}

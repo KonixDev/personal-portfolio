@@ -1,0 +1,50 @@
+.dark .dark\:text-gradient-vercel {
+    -webkit-background-clip: text;
+    background-clip: border-box;
+    font-weight: 800;
+    font-size: max(48px,min(5vw,76px));
+    line-height: 1;
+    letter-spacing: -.05em;
+    padding: 24px;
+    position: relative;
+    color: aliceblue;
+}
+
+
+.dark .dark\:gradient-text {
+    background-image: linear-gradient(to top, rgb(116, 115, 115), white);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; /* Hace el texto transparente, mostrando solo el fondo */
+    -webkit-text-fill-color: transparent; /* Necesario para navegadores basados en WebKit como Safari */
+}
+
+
+.text-gradient-vercel {
+    -webkit-background-clip: text;
+    background-clip: border-box;
+    font-weight: 800;
+    font-size: max(48px, min(5vw, 76px));
+    line-height: 1;
+    letter-spacing: -.05em;
+    padding: 24px;
+    position: relative;
+    color: rgb(0, 0, 0); /* o cualquier otro color que prefieras para el modo normal */
+}
+
+.gradient-text {
+    background-image: linear-gradient(to bottom, rgb(85, 85, 85), rgb(0, 0, 0));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; /* Hace el texto transparente, mostrando solo el fondo */
+    -webkit-text-fill-color: transparent; /* Necesario para navegadores basados en WebKit como Safari */
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  

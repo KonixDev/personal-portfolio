@@ -1,0 +1,59 @@
+.dark-theme .features_card__xYla9 {
+    --hover-color: hsla(0,0%,100%,.02);
+}
+.features_card__xYla9[data-variant=callout] {
+    justify-content: flex-end;
+    background: #000;
+    min-height: 380px;
+}
+.features_card__xYla9 {
+    --card-padding: 24px;
+    --radius: 12px;
+    --hover-color: #fff;
+    width: 400px; 
+    padding: var(--card-padding);
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: transparent;
+    border: 1px solid #333;
+    transition-property: border-color,background;
+    transition-duration: .15s;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrado vertical */
+    align-items: center; /* Centrado horizontal */
+    height: 380px; /* Altura fija */
+}
+
+.project-card-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Número de líneas que quieres mostrar */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+
+.features_card__xYla9 .overflow-hidden {
+    /* Resto de tus estilos */
+    flex: 0 0 auto; /* No permitir que la imagen cambie de tamaño */
+  }
+
+
+.features_card__xYla9 .card-content {
+    flex: 1; /* Tomar el espacio restante */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrado vertical del texto */
+    width: 100%; /* Asegurar que el texto no empuje la imagen */
+    padding: 0 10px; /* Añade padding si es necesario */
+  }
+  
+  .features_card__xYla9 .card-title,
+  .features_card__xYla9 .card-description {
+    height: 3em; /* Altura fija para el título y la descripción */
+    overflow: hidden; /* Ocultar texto que desborde */
+    text-overflow: ellipsis; /* Añadir elipsis si el texto es demasiado largo */
+  }

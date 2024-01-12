@@ -1,0 +1,22 @@
+.dark-theme .foundation_card__v7VKB {
+  background: linear-gradient(180deg,#242424,#121212 65.62%);
+}
+
+.foundation_card__v7VKB {
+  width: 240px;
+  min-height: 140px;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 0 1px rgba(0,0,0,.02), 0 4px 6px rgba(0,0,0,.02), inset 0 0 0 6px #111;
+  position: relative;
+  transition: background .15s ease;
+  border-style: solid;
+  border-width: 0.5px;
+  border-color: rgb(99, 99, 99); 
+  border-radius: 5%;
+}
+
+.foundation_card__v7VKB:hover {
+  border-image: linear-gradient(180deg, rgb(0, 0, 0), rgb(255, 255, 255)) 1;
+  background-color: linear-gradient(180deg, rgb(0, 0, 0), rgb(255, 255, 255)) 1;
+}
