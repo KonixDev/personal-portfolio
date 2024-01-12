@@ -9,14 +9,14 @@ const CV_URL =
 const Hero = () => {
   return (
     <section>
-      <div className="mx-auto px-4 py-52 lg:flex lg:items-center bg-white dark:bg-black">
+      <div className="mx-auto px-4 py-32 flex items-center bg-white dark:bg-black">
         <div className="mx-auto max-w-3xl text-center">
-          <h1 className="bg-clip-text sm:text-5xl dark:text-gradient-vercel dark:gradient-text text-gradient-vercel gradient-text">
+          <h1 className="bg-clip-text text-5xl dark:text-gradient-vercel dark:gradient-text text-gradient-vercel gradient-text">
             FullStack Developer
             <span className="sm:block"> Martín Coll. </span>
           </h1>
 
-          <p className="mx-auto mt-4 max-w-xl sm:text-xl/relaxed dark:text-white/55 text-black ">
+          <p className="mx-auto mt-4 max-w-xl text-xl/relaxed dark:text-white/55 text-black ">
             Hi! I'm Martín, a FullStack Developer from Argentina. I'm a
             self-taught developer, I love to learn new technologies and I'm
             always looking for new challenges.
