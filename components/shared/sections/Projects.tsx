@@ -30,6 +30,7 @@ const Projects = ({ showMoreBtn = true, slice = true }: ProjectsProps) => {
           {projects &&
             projects.map((project) => (
               <ProjectCard
+                key={project.id}
                 title={project.name}
                 description={project.description}
                 image={project.image}

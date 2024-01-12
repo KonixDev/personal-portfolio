@@ -16,7 +16,6 @@ const ProjectCard = ({ title, description, image, href }: ProjectCardProps) => {
   return (
     <article className="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
       <img alt="Office" src={image} className="h-56 w-full object-cover" />
-
       <div className="bg-white p-4 sm:p-6">
         <Link href={href} rel="noopener noreferrer" target="_blank">
           <h3 className="mt-0.5 text-lg text-gray-900">{title}</h3>

@@ -107,7 +107,7 @@ const Header = () => {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
-                stroke-width="2"
+                // stroke-width="2"
               >
                 <path
                   // stroke-linecap="round"

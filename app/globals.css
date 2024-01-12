@@ -34,29 +34,11 @@
  
     --radius: 0.5rem;
     --text-gradient: linear-gradient(180deg,#555,#000);
+    --background-linear-gradient:  linear-gradient(to bottom, rgb(85, 85, 85), rgb(0, 0, 0));
 
+    --text-color: #fff; 
   }
 
-  .text-gradient-vercel {
-    -webkit-background-clip: text;
-    background-clip: border-box;
-    font-weight: 800;
-    font-size: max(48px, min(5vw, 76px));
-    line-height: 1;
-    letter-spacing: -.05em;
-    padding: 24px;
-    position: relative;
-    color: rgb(0, 0, 0); /* o cualquier otro color que prefieras para el modo normal */
-  }
-  
-  .gradient-text {
-    background-image: linear-gradient(to bottom, rgb(85, 85, 85), rgb(0, 0, 0));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent; /* Hace el texto transparente, mostrando solo el fondo */
-    -webkit-text-fill-color: transparent; /* Necesario para navegadores basados en WebKit como Safari */
-  }
- 
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -85,27 +67,32 @@
     --border: 0 0% 14.9%;
     --input: 0 0% 14.9%;
     --ring: 0 0% 83.1%;
-  }
-  .dark\:text-gradient-vercel {
-    -webkit-background-clip: text;
-    background-clip: border-box;
-    line-height: 1;
-    letter-spacing: -.05em;
-    padding: 24px;
-    position: relative;
-    color: aliceblue;
-  }
-  .dark\:gradient-text {
-    background-image: linear-gradient(to top, rgb(116, 115, 115), white);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent; /* Hace el texto transparente, mostrando solo el fondo */
-    -webkit-text-fill-color: transparent; /* Necesario para navegadores basados en WebKit como Safari */
-  }
 
+    --background-linear-gradient: linear-gradient(to top, rgb(116, 115, 115), white);
+    --text-color: rgb(0, 0, 0); 
+  }
 
 }
- 
+
+.text-gradient-vercel {
+  -webkit-background-clip: text;
+  background-clip: border-box;
+  font-weight: 800;
+  font-size: max(48px, min(5vw, 76px));
+  line-height: 1;
+  letter-spacing: -.05em;
+  padding: 24px;
+  position: relative;
+  color: var(--text-color);
+}
+
+.gradient-text {
+  background-image: var(--background-linear-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent; /* Hace el texto transparente, mostrando solo el fondo */
+  -webkit-text-fill-color: transparent; /* Necesario para navegadores basados en WebKit como Safari */
+}
 
  
 @layer base {
