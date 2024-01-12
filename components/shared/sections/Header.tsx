@@ -63,7 +63,7 @@ const Header = () => {
                   smooth={true}
                   duration={800}
                   className="text-gray-600 transition hover:text-gray-300
-                dark:text-white/60 dark:hover:text-white/95"
+                dark:text-white/60 dark:hover:text-white/95 cursor-pointer"
                 >
                   <span className="flex">Experience</span>
                 </Scroll>
@@ -74,7 +74,7 @@ const Header = () => {
                   smooth={true}
                   duration={800}
                   className="text-gray-600 transition hover:text-gray-300
-                dark:text-white/60 dark:hover:text-white/95"
+                dark:text-white/60 dark:hover:text-white/95 cursor-pointer"
                 >
                   <span className="flex">Skills</span>
                 </Scroll>
@@ -85,7 +85,7 @@ const Header = () => {
                   smooth={true}
                   duration={800}
                   className="text-gray-600 transition hover:text-gray-300
-                dark:text-white/60 dark:hover:text-white/95"
+                dark:text-white/60 dark:hover:text-white/95 cursor-pointer"
                 >
                   <span className="flex">About Me</span>
                 </Scroll>
