@@ -14,7 +14,7 @@ const AboutMe = () => {
             <Image
               alt="Profile of Author"
               layout="fill"
-              src="/full2-removebg.png"
+              src="/full2-removebg.webp"
               sizes="(max-width: 500px) 100vw, 500px"
               className="object-cover object-top grayscale"
             />

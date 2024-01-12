@@ -6,7 +6,7 @@ const UserCard = () => {
     <div className="flex items-start gap-4 pb-10">
       <div className="lg:flex-shrink-0 md:flex-shrink-0 sm:flex">
         <Image
-          src="/full.jpg"
+          src="/full.webp"
           width={300} // Puedes ajustar el tamaño de la imagen aquí
           height={300} // Asegúrate de mantener la relación de aspecto
           alt="Picture of the author"
