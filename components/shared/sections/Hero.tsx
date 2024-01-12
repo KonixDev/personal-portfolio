@@ -3,8 +3,8 @@ import { Button } from "../../ui/button";
 import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-const CV_URL =
-  "https://docs.google.com/document/d/1YyZ8Rcoh7tKN6yQHkH4rQR6hvA8-71nFVsXC1VYrbwU";
+//const CV_URL = "https://docs.google.com/document/d/1YyZ8Rcoh7tKN6yQHkH4rQR6hvA8-71nFVsXC1VYrbwU";
+const CV_URL = "/Spanish-Martin-Coll-CV-FullStack-Developer.pdf";
 
 const Hero = () => {
   return (

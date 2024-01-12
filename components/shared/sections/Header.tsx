@@ -94,11 +94,13 @@ const Header = () => {
           </nav>
 
           <div className="flex items-center gap-4 ">
-            <div className="sm:flex sm:gap-4">
-              <Button variant="default">Projects</Button>
+            <div className="flex gap-4">
+              <Link href={"/projects"}>
+                <Button variant={"default"}>Projects</Button>
+              </Link>
               <ModeToggle />
             </div>
-
+            {/* 
             <button className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 dark:bg-gray-800 dark:text-white dark:hover:text-white/75 md:hidden">
               <span className="sr-only">Toggle menu</span>
               <svg
@@ -115,7 +117,7 @@ const Header = () => {
                   d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

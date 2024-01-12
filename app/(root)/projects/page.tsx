@@ -4,7 +4,9 @@ import Projects from "@/components/shared/sections/Projects";
 const Page = ({}) => {
   return (
     <section>
-      <Projects showMoreBtn={false} slice={false} />
+      <div className="mt-10">
+        <Projects showMoreBtn={false} slice={false} />
+      </div>
     </section>
   );
 };
