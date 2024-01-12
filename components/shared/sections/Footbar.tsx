@@ -14,7 +14,7 @@ const Footbar = () => {
 
           <form className="mt-6">
             <div className="relative max-w-lg">
-              <label className="sr-only" for="email">
+              <label className="sr-only">
                 {" "}
                 Email{" "}
               </label>
