@@ -2,12 +2,14 @@ import React from "react";
 import { Button } from "../../ui/button";
 import Link from "next/link";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import MotionDiv from '../MotionDiv';
 
 //const CV_URL = "https://docs.google.com/document/d/1YyZ8Rcoh7tKN6yQHkH4rQR6hvA8-71nFVsXC1VYrbwU";
 const CV_URL = "/Spanish-Martin-Coll-CV-FullStack-Developer.pdf";
 
 const Hero = () => {
   return (
+    <MotionDiv>
     <section>
       <div className="mx-auto px-4 py-32 flex items-center bg-white dark:bg-black">
         <div className="mx-auto max-w-3xl text-center">
@@ -34,7 +36,7 @@ const Hero = () => {
           <div className="mx-auto mt-10 max-w-xl sm:text-xl/relaxed dark:text-white/55 text-black ">
             <div className="mt-6 flex justify-center gap-4 lg:justify-center">
               <Link
-                className="text-gray-700 transition hover:text-gray-700/75"
+                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white/75 dark:hover:text-gray-700"
                 href="https://www.linkedin.com/in/martincoll/"
                 target="_blank"
                 rel="noreferrer"
@@ -43,7 +45,7 @@ const Hero = () => {
                 <FaLinkedin size={40} />
               </Link>
               <Link
-                className="text-gray-700 transition hover:text-gray-700/75"
+                className="text-gray-700 transition hover:text-gray-700/75 dark:text-white/75 dark:hover:text-gray-700"
                 href="https://github.com/KonixDev"
                 target="_blank"
                 rel="noreferrer"
@@ -56,6 +58,8 @@ const Hero = () => {
         </div>
       </div>
     </section>
+  
+    </MotionDiv>
   );
 };
 
