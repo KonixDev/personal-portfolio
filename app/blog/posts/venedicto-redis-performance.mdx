@@ -1,0 +1,67 @@
+---
+title: "Mejorando rendimiento y seguridad con Redis y RBAC (Venedicto Team)"
+publishedAt: "2025-02-05"
+summary: "Cómo utilicé Redis, control de acceso basado en roles y buenas prácticas de seguridad para mejorar una plataforma en Venedicto Team."
+---
+
+En **Venedicto Team** trabajé como **Full Stack MERN** en una plataforma donde el rendimiento y la
+seguridad eran fundamentales. El sistema ya estaba en producción, pero necesitaba mejoras claras en
+tiempos de respuesta, control de acceso y protección de endpoints.
+
+## Redis como capa de caché estratégica
+
+Uno de los primeros cambios fue la incorporación de **Redis** como caché de alta velocidad. Muchas
+consultas a la base de datos se repetían con parámetros similares y no necesitaban ir siempre hasta el
+origen.
+
+Definimos una estrategia de caché por:
+
+- Recursos muy consultados pero poco cambiantes.
+- Listados paginados.
+- Datos de configuración global.
+
+Con esto se logró reducir la carga directa sobre la base de datos y mejorar la percepción de
+performance por parte de los usuarios.
+
+## Control de acceso basado en roles (RBAC)
+
+Otro eje importante fue reforzar la seguridad mediante un sistema de **Role‑Based Access Control
+(RBAC)**. En lugar de depender solo de checks ad‑hoc en cada endpoint, diseñamos una capa centralizada
+para gestionar:
+
+- Roles (admin, operador, usuario, etc.).
+- Permisos asociados a cada rol.
+- Verificación consistente en middlewares de Express.
+
+Esto permitió mantener las reglas de acceso más claras, reduciendo errores y facilitando la evolución
+de la plataforma.
+
+## Paginación server‑side y optimización de red
+
+Varios listados se cargaban inicialmente sin paginación eficiente, lo que suponía tiempos de respuesta
+más altos y un mayor uso de red. Implementé **paginación server‑side optimizada**, enviando solo los
+registros necesarios para cada vista y manteniendo la UI reactiva en el frontend.
+
+El resultado fue una experiencia más fluida, especialmente para usuarios con conexiones inestables.
+
+## Seguridad: CORS, rate‑limiting y cifrado completo
+
+La seguridad se reforzó con varias medidas complementarias:
+
+- Configuración estricta de **CORS** para limitar orígenes permitidos.
+- Implementación de **rate‑limiting por IP** para mitigar ataques de fuerza bruta.
+- Añadí un middleware de **cifrado completo de solicitudes (GET/POST)** para proteger datos sensibles
+en tránsito.
+
+Estas mejoras se sumaron a prácticas generales como el manejo cuidadoso de tokens, validación de
+entrada y logs adecuados.
+
+## Deploy en Railway y operación
+
+La plataforma se desplegaba en **Railway**, lo que facilitaba el escalado y la gestión del entorno.
+Trabajé en la configuración de variables de entorno, pipelines de despliegue y monitorización básica
+para garantizar estabilidad.
+
+En conjunto, esta experiencia me permitió profundizar en temas de **rendimiento, seguridad y
+operación de servicios Node.js** en entornos reales, con impacto directo en la experiencia del usuario
+final y en la confianza del equipo técnico.
