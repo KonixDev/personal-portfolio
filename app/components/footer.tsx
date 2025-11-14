@@ -17,45 +17,45 @@ function ArrowIcon() {
 
 export default function Footer() {
   return (
-    <footer className="mb-16">
-      <ul className="font-sm mt-8 flex flex-col space-x-0 space-y-2 text-neutral-600 md:flex-row md:space-x-4 md:space-y-0 dark:text-neutral-300">
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="/rss"
-          >
-            <ArrowIcon />
-            <p className="ml-2 h-7">rss</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://github.com/vercel/next.js"
-          >
-            <ArrowIcon />
-            <p className="ml-2 h-7">github</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center transition-all hover:text-neutral-800 dark:hover:text-neutral-100"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://vercel.com/templates/next.js/portfolio-starter-kit"
-          >
-            <ArrowIcon />
-            <p className="ml-2 h-7">view source</p>
-          </a>
-        </li>
-      </ul>
-      <p className="mt-8 text-neutral-600 dark:text-neutral-300">
-        © {new Date().getFullYear()} MIT Licensed
-      </p>
+    <footer className="mb-10 mt-10 border-t border-white/5 pt-4 text-xs text-neutral-500">
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+        <p className="font-mono text-[0.7rem] text-neutral-500">
+          © {new Date().getFullYear()} Martín Coll
+        </p>
+        <ul className="flex flex-wrap gap-4 text-[0.75rem]">
+          <li>
+            <a
+              href="mailto:contacto@martincoll.dev"
+              className="inline-flex items-center gap-1 text-neutral-400 transition hover:text-neutral-200"
+            >
+              <ArrowIcon />
+              <span>contacto@martincoll.dev</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://wa.me/5491130756468"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-neutral-400 transition hover:text-neutral-200"
+            >
+              <ArrowIcon />
+              <span>WhatsApp</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/KonixDev"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-neutral-400 transition hover:text-neutral-200"
+            >
+              <ArrowIcon />
+              <span>github.com/KonixDev</span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </footer>
   )
 }

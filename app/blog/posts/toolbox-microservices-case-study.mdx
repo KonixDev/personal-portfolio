@@ -1,0 +1,67 @@
+---
+title: "Diseñando microservicios para una plataforma de entretenimiento global (Toolbox)"
+publishedAt: "2025-03-10"
+summary: "Cómo trabajé como Full Stack MERN en Toolbox construyendo APIs REST, microservicios e integraciones B2B/B2C a escala."
+---
+
+En **Toolbox** trabajé como **Full Stack MERN** desarrollando y manteniendo una plataforma de
+entretenimiento que integraba múltiples servicios de streaming y modelos de negocio B2C, B2B y B2B2C.
+
+El desafío principal era coordinar flujos complejos de suscripción, facturación y acceso a contenido
+entre distintos proveedores, manteniendo al mismo tiempo una arquitectura mantenible y observable.
+
+## APIs REST pensadas para negocio
+
+Uno de los focos del trabajo fue el diseño y desarrollo de **APIs REST con Node.js y Express** para
+flujos críticos:
+
+- Altas, bajas y modificaciones de suscriptores.
+- Gestión de cuentas y perfiles.
+- Autenticación basada en **JWT** y cookies seguras.
+- Pagos y vinculación con tiendas externas.
+
+Cada endpoint debía reflejar reglas de negocio muy concretas, desde validaciones hasta diferentes
+niveles de permisos. La documentación se mantenía en **Swagger/OpenAPI**, lo que facilitaba al equipo
+entender y consumir los servicios sin depender tanto de comunicación sincrónica.
+
+## Microservicios e integraciones con terceros
+
+La plataforma integraba servicios como **HBO Max, Disney+, Universal+, Prime Video, VTR, Claro,
+Teatrix y Fanatiz**, además de tiendas **IAP** (Google Play, Apple Store, Roku) y distintos CRMs.
+
+Para mantener esto bajo control, trabajamos con una arquitectura basada en **microservicios**, donde
+cada servicio se encargaba de una parte concreta del dominio (suscripciones, billing, catálogo, etc.).
+
+Algunas decisiones clave:
+
+- Separación clara de responsabilidades entre servicios.
+- Uso de **MongoDB** como base de datos principal, con índices bien diseñados para las consultas
+  más frecuentes.
+- Integraciones robustas con APIs externas, gestionando timeouts, reintentos y trazas de errores.
+
+## Performance, monitoreo y calidad
+
+En una plataforma de este tipo, la observabilidad es tan importante como la funcionalidad. Participé en
+la configuración y uso de herramientas como **Kibana (ElasticSearch), New Relic y Zabbix** para
+monitorizar:
+
+- Latencia de endpoints.
+- Errores por servicio.
+- Consumo de recursos.
+
+Además, aplicábamos buenas prácticas de calidad:
+
+- **Pruebas unitarias** con Mocha, Chai, Supertest y Mongo Mocks.
+- **Pruebas E2E** con Cypress + Cucumber.
+- Revisión de código y refactor de endpoints clave (por ejemplo, la normalización del uso de
+  `customerId`).
+
+## Automatización y procesos
+
+Otra parte del trabajo fue la **automatización de procesos manuales**, como la importación masiva de
+suscriptores desde distintas fuentes. Estas tareas se integraban con sistemas de **CRM** y herramientas
+de marketing como **Braze y Singular**, permitiendo mejor tracking y análisis de campañas.
+
+La experiencia en Toolbox consolidó mi forma de trabajar con arquitecturas distribuidas: entender el
+negocio, diseñar contratos claros entre servicios y mantener siempre un foco fuerte en observabilidad,
+seguridad y rendimiento.
