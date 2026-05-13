@@ -1,61 +1,36 @@
-function ArrowIcon() {
-  return (
-    <svg
-      width="12"
-      height="12"
-      viewBox="0 0 12 12"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M2.07102 11.3494L0.963068 10.2415L9.2017 1.98864H2.83807L2.85227 0.454545H11.8438V9.46023H10.2955L10.3097 3.09659L2.07102 11.3494Z"
-        fill="currentColor"
-      />
-    </svg>
-  )
-}
+import { site } from "@/lib/site-config";
 
-export default function Footer() {
+export function Footer() {
+  const year = new Date().getFullYear();
   return (
-    <footer className="mb-10 mt-10 border-t border-white/5 pt-4 text-xs text-neutral-500">
-      <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-        <p className="font-mono text-[0.7rem] text-neutral-500">
-          © {new Date().getFullYear()} Martín Coll
-        </p>
-        <ul className="flex flex-wrap gap-4 text-[0.75rem]">
-          <li>
+    <footer className="bg-[var(--color-paper-2)]">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-6 px-6 py-10 lg:flex-row lg:items-end lg:justify-between lg:px-12">
+        <div>
+          <div className="text-[28px] tracking-[-0.025em] leading-none font-medium">
+            <span className="text-[var(--color-accent)]">★</span> {site.name}
+            <span className="serif-italic ml-2 text-[var(--color-muted)]">
+              studio
+            </span>
+          </div>
+          <p className="mt-3 text-[12.5px] text-[var(--color-muted)]">
+            Construyo SaaS de producción. {site.location}.
+          </p>
+        </div>
+
+        <div className="flex flex-col items-start gap-1 font-mono text-[10.5px] tracking-[0.14em] uppercase text-[var(--color-muted)] lg:items-end">
+          <span>
+            © {year} {site.name}
+          </span>
+          <span>
             <a
-              href="mailto:contacto@martincoll.dev"
-              className="inline-flex items-center gap-1 text-neutral-400 transition hover:text-neutral-200"
+              href={`mailto:${site.email}`}
+              className="hover:text-[var(--color-ink)]"
             >
-              <ArrowIcon />
-              <span>contacto@martincoll.dev</span>
+              {site.email}
             </a>
-          </li>
-          <li>
-            <a
-              href="https://wa.me/5491130756468"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 text-neutral-400 transition hover:text-neutral-200"
-            >
-              <ArrowIcon />
-              <span>WhatsApp</span>
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://github.com/KonixDev"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 text-neutral-400 transition hover:text-neutral-200"
-            >
-              <ArrowIcon />
-              <span>github.com/KonixDev</span>
-            </a>
-          </li>
-        </ul>
+          </span>
+        </div>
       </div>
     </footer>
-  )
+  );
 }
