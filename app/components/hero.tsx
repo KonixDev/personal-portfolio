@@ -97,8 +97,6 @@ function RotatingLogo() {
     return () => clearInterval(interval);
   }, []);
 
-  const next = (index + 1) % projects.length;
-
   return (
     <div className="relative h-[86px] w-[86px]">
       {/* Shadow cards behind — stack effect */}
@@ -112,11 +110,7 @@ function RotatingLogo() {
           initial={{ opacity: 1, scale: 0.82, y: -14, zIndex: 0 }}
           animate={{ opacity: 1, scale: 1, y: 0, zIndex: 2 }}
           exit={{ opacity: 0, scale: 0.9, y: 30, zIndex: 1 }}
-          transition={{
-            duration: 0.5,
-            ease: [0.22, 1, 0.36, 1],
-            exit: { duration: 0.2, ease: "easeIn" },
-          }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="relative"
         >
           <Image
