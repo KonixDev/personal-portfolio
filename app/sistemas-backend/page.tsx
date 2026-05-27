@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     title: "Sistemas Backend — APIs e infraestructura | Martín Coll",
     description:
       "APIs, bases de datos, microservicios e infraestructura. El motor invisible que hace funcionar tu producto.",
+    images: [{ url: "/og/sistemas-backend.png", width: 1200, height: 630, alt: "Sistemas Backend — APIs e infraestructura | Martín Coll" }],
   },
 };
 

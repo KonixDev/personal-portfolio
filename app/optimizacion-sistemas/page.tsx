@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     title: "Optimización de Sistemas | Martín Coll",
     description:
       "Tu sistema actual, funcionando como debería. Velocidad, estabilidad y costos optimizados.",
+    images: [{ url: "/og/optimizacion-sistemas.png", width: 1200, height: 630, alt: "Optimización de Sistemas | Martín Coll" }],
   },
 };
 

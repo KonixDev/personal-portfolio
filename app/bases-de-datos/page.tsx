@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     title: "Bases de Datos — Diseño, optimización y migración | Martín Coll",
     description:
       "Tu base de datos, diseñada para escalar. Esquemas, queries, índices, migraciones y backups.",
+    images: [{ url: "/og/bases-de-datos.png", width: 1200, height: 630, alt: "Bases de Datos — Diseño, optimización y migración | Martín Coll" }],
   },
 };
 

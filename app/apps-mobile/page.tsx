@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     title: "Apps Mobile — iOS, Android & Android TV | Martín Coll",
     description:
       "Apps mobile nativas y cross-platform. De la idea a la tienda en semanas. Precio fijo, código tuyo.",
+    images: [{ url: "/og/apps-mobile.png", width: 1200, height: 630, alt: "Apps Mobile — iOS, Android & Android TV | Martín Coll" }],
   },
 };
 

@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     title: "Desarrollo Web — Sitios, plataformas y sistemas | Martín Coll",
     description:
       "Sitios web, plataformas SaaS, ERPs y dashboards. De la idea al lanzamiento en semanas. Precio fijo, código tuyo.",
+    images: [{ url: "/og/desarrollo-web.png", width: 1200, height: 630, alt: "Desarrollo Web — Sitios, plataformas y sistemas | Martín Coll" }],
   },
 };
 

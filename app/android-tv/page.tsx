@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     title: "Android TV — Streaming y entretenimiento | Martín Coll",
     description:
       "Apps para Android TV: streaming, canales en vivo, entretenimiento. De la idea a la pantalla grande.",
+    images: [{ url: "/og/android-tv.png", width: 1200, height: 630, alt: "Android TV — Streaming y entretenimiento | Martín Coll" }],
   },
 };
 

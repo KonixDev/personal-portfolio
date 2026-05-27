@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     title: "ERP & Dashboards — Gestión a medida | Martín Coll",
     description:
       "Paneles de gestión, ERPs y dashboards a medida. Tu negocio, en un solo lugar.",
+    images: [{ url: "/og/erp-dashboards.png", width: 1200, height: 630, alt: "ERP & Dashboards — Gestión a medida | Martín Coll" }],
   },
 };
 

@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     title: "Ciberseguridad — Auditorías y pentesting | Martín Coll",
     description:
       "Auditorías de seguridad, pentesting y hardening. Protegé tu sistema antes de que sea tarde.",
+    images: [{ url: "/og/ciberseguridad.png", width: 1200, height: 630, alt: "Ciberseguridad — Auditorías y pentesting | Martín Coll" }],
   },
 };
 

@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     title: "Publicación en Play Store y App Store | Martín Coll",
     description:
       "Tu app publicada y lista para descargar. Nos encargamos de todo el proceso.",
+    images: [{ url: "/og/publicacion-stores.png", width: 1200, height: 630, alt: "Publicación en Play Store y App Store | Martín Coll" }],
   },
 };
 

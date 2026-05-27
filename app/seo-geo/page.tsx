@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     title: "SEO & GEO — Posicionamiento en buscadores | Martín Coll",
     description:
       "Que te encuentren los que te buscan. SEO técnico, local y de contenido.",
+    images: [{ url: "/og/seo-geo.png", width: 1200, height: 630, alt: "SEO & GEO — Posicionamiento en buscadores | Martín Coll" }],
   },
 };
 

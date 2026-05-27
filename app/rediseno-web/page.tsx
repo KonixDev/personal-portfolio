@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     title: "Rediseño Web — Transformá tu sitio | Martín Coll",
     description:
       "Rediseño web: mejor diseño, más velocidad, mejor SEO, más conversión. Transformamos lo que ya tenés.",
+    images: [{ url: "/og/rediseno-web.png", width: 1200, height: 630, alt: "Rediseño Web — Transformá tu sitio | Martín Coll" }],
   },
 };
 
