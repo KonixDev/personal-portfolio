@@ -2,6 +2,7 @@
 
 import { waLink } from "@/lib/site-config";
 import { motion, useInView } from "framer-motion";
+import Link from "next/link";
 import { useRef } from "react";
 
 export function WebCta() {
@@ -43,9 +44,9 @@ export function WebCta() {
         >
           Hablemos por WhatsApp
         </a>
-        <a href="/" className="btn-secondary">
+        <Link href="/" className="btn-secondary">
           Ver todos los servicios
-        </a>
+        </Link>
       </motion.div>
     </section>
   );

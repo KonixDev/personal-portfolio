@@ -2,6 +2,7 @@
 
 import { waLink } from "@/lib/site-config";
 import { motion, useInView } from "framer-motion";
+import Link from "next/link";
 import { useRef } from "react";
 
 export function ErpCta() {
@@ -42,9 +43,9 @@ export function ErpCta() {
         >
           Hablemos por WhatsApp
         </a>
-        <a href="/" className="btn-secondary">
+        <Link href="/" className="btn-secondary">
           Ver todos los servicios
-        </a>
+        </Link>
       </motion.div>
     </section>
   );

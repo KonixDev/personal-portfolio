@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { Header } from "../../components/header";
 import { Footer } from "../../components/footer";
 import { FooterReveal } from "../../components/footer-reveal";
-import { FaqJsonLd } from "../../components/json-ld";
 import { getAllSlugs, getPostBySlug } from "@/lib/blog";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
