@@ -2,26 +2,42 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+type ServiceItem = { label: string; href: string };
+
 const categories = [
   {
     tab: "Mobile & TV",
     heading: "Apps que tus usuarios quieren abrir.",
     desc: "iOS, Android y Android TV. Nativas o cross-platform. Publicación en Play Store y App Store incluida.",
-    items: ["Apps Mobile", "Android TV", "Play Store & App Store"],
+    items: [
+      { label: "Apps Mobile", href: "/apps-mobile" },
+      { label: "Android TV", href: "/android-tv" },
+      { label: "Play Store & App Store", href: "/publicacion-stores" },
+    ] as ServiceItem[],
     visual: MobileVisual,
   },
   {
     tab: "Web & Backend",
     heading: "Sistemas que escalan con tu negocio.",
     desc: "Desde landing pages hasta ERPs complejos. APIs, bases de datos, dashboards, integraciones.",
-    items: ["Desarrollo Web", "Sistemas Backend", "Base de Datos", "ERP & Dashboards"],
+    items: [
+      { label: "Desarrollo Web", href: "/desarrollo-web" },
+      { label: "Sistemas Backend", href: "/sistemas-backend" },
+      { label: "Base de Datos", href: "/bases-de-datos" },
+      { label: "ERP & Dashboards", href: "/erp-dashboards" },
+    ] as ServiceItem[],
     visual: WebVisual,
   },
   {
     tab: "Seguridad & Optimización",
     heading: "Tu sistema, más rápido y más seguro.",
     desc: "Auditorías de seguridad, optimización de rendimiento, posicionamiento en buscadores, y rediseño de arquitectura.",
-    items: ["Ciberseguridad", "Optimización de Sistemas", "SEO & GEO", "Rediseño Web"],
+    items: [
+      { label: "Ciberseguridad", href: "/ciberseguridad" },
+      { label: "Optimización de Sistemas", href: "/optimizacion-sistemas" },
+      { label: "SEO & GEO", href: "/seo-geo" },
+      { label: "Rediseño Web", href: "/rediseno-web" },
+    ] as ServiceItem[],
     visual: SecurityVisual,
   },
 ] as const;
@@ -78,12 +94,13 @@ export function Services() {
           <p className="text-body-sm mt-4 max-w-[440px]">{cat.desc}</p>
           <div className="mt-8 flex flex-wrap gap-2">
             {cat.items.map((item) => (
-              <span
-                key={item}
-                className="rounded-full bg-[var(--color-bg-secondary)] px-4 py-2 text-[13px] font-medium text-[var(--color-text)]"
+              <a
+                key={item.label}
+                href={item.href}
+                className="rounded-full bg-[var(--color-bg-secondary)] px-4 py-2 text-[13px] font-medium text-[var(--color-text)] transition-colors hover:bg-[var(--color-bg-tertiary)]"
               >
-                {item}
-              </span>
+                {item.label}
+              </a>
             ))}
           </div>
         </div>

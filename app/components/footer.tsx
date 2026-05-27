@@ -4,20 +4,22 @@ const columns = [
   {
     title: "Servicios",
     links: [
-      { label: "Apps Mobile", href: "#servicios" },
-      { label: "Desarrollo Web", href: "#servicios" },
-      { label: "Sistemas Backend", href: "#servicios" },
-      { label: "Ciberseguridad", href: "#servicios" },
-      { label: "Android TV", href: "#servicios" },
+      { label: "Apps Mobile", href: "/apps-mobile" },
+      { label: "Desarrollo Web", href: "/desarrollo-web" },
+      { label: "Sistemas Backend", href: "/sistemas-backend" },
+      { label: "Android TV", href: "/android-tv" },
+      { label: "Ciberseguridad", href: "/ciberseguridad" },
+      { label: "SEO & GEO", href: "/seo-geo" },
     ],
   },
   {
-    title: "Recursos",
+    title: "Más servicios",
     links: [
-      { label: "Proyectos", href: "#proyectos" },
-      { label: "Proceso", href: "#proceso" },
-      { label: "Pricing", href: "#servicios" },
-      { label: "FAQ", href: "#faq" },
+      { label: "Rediseño Web", href: "/rediseno-web" },
+      { label: "Bases de Datos", href: "/bases-de-datos" },
+      { label: "Optimización de Sistemas", href: "/optimizacion-sistemas" },
+      { label: "ERP & Dashboards", href: "/erp-dashboards" },
+      { label: "Publicación en Stores", href: "/publicacion-stores" },
     ],
   },
   {
@@ -37,7 +39,7 @@ export function Footer() {
   return (
     <footer className="bg-[var(--color-bg-inverse)] text-[var(--color-text-inverse)]">
       <div className="mx-auto max-w-[1280px] px-5 pt-12 pb-6 md:px-12 md:pt-20 lg:px-[116px] lg:pt-[104px]">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-[1fr_1fr_1fr_1fr]">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[1fr_1fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2">
               <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
