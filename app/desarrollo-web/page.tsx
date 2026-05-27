@@ -13,6 +13,7 @@ import { WebProcess } from "./components/process";
 import { WebPricing } from "./components/pricing";
 import { WebFaq } from "./components/faq";
 import { WebCta } from "./components/cta";
+import { RelatedServices } from "../components/related-services";
 
 export const metadata: Metadata = {
   title: "Desarrollo Web — Sitios, plataformas y sistemas a medida",
@@ -52,6 +53,12 @@ const faqItems = [
   },
 ];
 
+const relatedItems = [
+  { label: "Sistemas Backend", href: "/sistemas-backend", desc: "APIs, bases de datos, colas de trabajo e integraciones." },
+  { label: "SEO & GEO", href: "/seo-geo", desc: "Posicionamiento en Google y búsquedas de IA." },
+  { label: "Rediseño Web", href: "/rediseno-web", desc: "Tu sitio actual, transformado. Mejor diseño y velocidad." },
+];
+
 export default function DesarrolloWebPage() {
   return (
     <FooterReveal
@@ -79,6 +86,8 @@ export default function DesarrolloWebPage() {
           <WebPricing />
           <div className="divider" />
           <WebFaq />
+          <div className="divider" />
+          <RelatedServices items={relatedItems} />
           <div className="divider" />
           <WebCta />
         </>

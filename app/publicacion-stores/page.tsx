@@ -13,6 +13,7 @@ import { StoreProcess } from "./components/process";
 import { StorePricing } from "./components/pricing";
 import { StoreFaq } from "./components/faq";
 import { StoreCta } from "./components/cta";
+import { RelatedServices } from "../components/related-services";
 
 export const metadata: Metadata = {
   title: "Publicación en Stores — Play Store y App Store",
@@ -52,6 +53,12 @@ const faqItems = [
   },
 ];
 
+const relatedItems = [
+  { label: "Apps Mobile", href: "/apps-mobile", desc: "iOS, Android y Android TV. Nativas o cross-platform." },
+  { label: "Android TV", href: "/android-tv", desc: "Apps de streaming, canales en vivo y entretenimiento." },
+  { label: "Desarrollo Web", href: "/desarrollo-web", desc: "Landing pages, plataformas SaaS, ERPs y dashboards." },
+];
+
 export default function PublicacionStoresPage() {
   return (
     <FooterReveal
@@ -79,6 +86,8 @@ export default function PublicacionStoresPage() {
           <StorePricing />
           <div className="divider" />
           <StoreFaq />
+          <div className="divider" />
+          <RelatedServices items={relatedItems} />
           <div className="divider" />
           <StoreCta />
         </>

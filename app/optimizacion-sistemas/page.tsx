@@ -13,6 +13,7 @@ import { OptProcess } from "./components/process";
 import { OptPricing } from "./components/pricing";
 import { OptFaq } from "./components/faq";
 import { OptCta } from "./components/cta";
+import { RelatedServices } from "../components/related-services";
 
 export const metadata: Metadata = {
   title: "Optimización de Sistemas — Más rápido, más estable, más barato",
@@ -52,6 +53,12 @@ const faqItems = [
   },
 ];
 
+const relatedItems = [
+  { label: "Ciberseguridad", href: "/ciberseguridad", desc: "Auditorías, pentesting y protección de infraestructura." },
+  { label: "Bases de Datos", href: "/bases-de-datos", desc: "Diseño, optimización y migración de bases de datos." },
+  { label: "Sistemas Backend", href: "/sistemas-backend", desc: "APIs, bases de datos, colas de trabajo e integraciones." },
+];
+
 export default function OptimizacionPage() {
   return (
     <FooterReveal
@@ -79,6 +86,8 @@ export default function OptimizacionPage() {
           <OptPricing />
           <div className="divider" />
           <OptFaq />
+          <div className="divider" />
+          <RelatedServices items={relatedItems} />
           <div className="divider" />
           <OptCta />
         </>

@@ -13,6 +13,7 @@ import { MobileProcess } from "./components/process";
 import { MobilePricing } from "./components/pricing";
 import { MobileFaq } from "./components/faq";
 import { MobileCta } from "./components/cta";
+import { RelatedServices } from "../components/related-services";
 
 export const metadata: Metadata = {
   title: "Apps Mobile — iOS, Android & Android TV",
@@ -52,6 +53,12 @@ const faqItems = [
   },
 ];
 
+const relatedItems = [
+  { label: "Android TV", href: "/android-tv", desc: "Apps de streaming, canales en vivo y entretenimiento." },
+  { label: "Publicación en Stores", href: "/publicacion-stores", desc: "Tu app en Play Store y App Store." },
+  { label: "Desarrollo Web", href: "/desarrollo-web", desc: "Landing pages, plataformas SaaS, ERPs y dashboards." },
+];
+
 export default function AppsMobilePage() {
   return (
     <FooterReveal
@@ -79,6 +86,8 @@ export default function AppsMobilePage() {
           <MobilePricing />
           <div className="divider" />
           <MobileFaq />
+          <div className="divider" />
+          <RelatedServices items={relatedItems} />
           <div className="divider" />
           <MobileCta />
         </>

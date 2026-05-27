@@ -13,6 +13,7 @@ import { SeoProcess } from "./components/process";
 import { SeoPricing } from "./components/pricing";
 import { SeoFaq } from "./components/faq";
 import { SeoCta } from "./components/cta";
+import { RelatedServices } from "../components/related-services";
 
 export const metadata: Metadata = {
   title: "SEO & GEO — Que te encuentren los que te buscan",
@@ -52,6 +53,12 @@ const faqItems = [
   },
 ];
 
+const relatedItems = [
+  { label: "Rediseño Web", href: "/rediseno-web", desc: "Tu sitio actual, transformado. Mejor diseño y velocidad." },
+  { label: "Desarrollo Web", href: "/desarrollo-web", desc: "Landing pages, plataformas SaaS, ERPs y dashboards." },
+  { label: "Optimización de Sistemas", href: "/optimizacion-sistemas", desc: "Más rápido, más estable, más barato." },
+];
+
 export default function SeoGeoPage() {
   return (
     <FooterReveal
@@ -79,6 +86,8 @@ export default function SeoGeoPage() {
           <SeoPricing />
           <div className="divider" />
           <SeoFaq />
+          <div className="divider" />
+          <RelatedServices items={relatedItems} />
           <div className="divider" />
           <SeoCta />
         </>

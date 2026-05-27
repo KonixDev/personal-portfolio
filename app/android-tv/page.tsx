@@ -13,6 +13,7 @@ import { TvProcess } from "./components/process";
 import { TvPricing } from "./components/pricing";
 import { TvFaq } from "./components/faq";
 import { TvCta } from "./components/cta";
+import { RelatedServices } from "../components/related-services";
 
 export const metadata: Metadata = {
   title: "Android TV — Apps de streaming, canales y entretenimiento",
@@ -52,6 +53,12 @@ const faqItems = [
   },
 ];
 
+const relatedItems = [
+  { label: "Apps Mobile", href: "/apps-mobile", desc: "iOS, Android y Android TV. Nativas o cross-platform." },
+  { label: "Publicación en Stores", href: "/publicacion-stores", desc: "Tu app en Play Store y App Store." },
+  { label: "Sistemas Backend", href: "/sistemas-backend", desc: "APIs, bases de datos, colas de trabajo e integraciones." },
+];
+
 export default function AndroidTvPage() {
   return (
     <FooterReveal
@@ -79,6 +86,8 @@ export default function AndroidTvPage() {
           <TvPricing />
           <div className="divider" />
           <TvFaq />
+          <div className="divider" />
+          <RelatedServices items={relatedItems} />
           <div className="divider" />
           <TvCta />
         </>

@@ -13,6 +13,7 @@ import { ErpProcess } from "./components/process";
 import { ErpPricing } from "./components/pricing";
 import { ErpFaq } from "./components/faq";
 import { ErpCta } from "./components/cta";
+import { RelatedServices } from "../components/related-services";
 
 export const metadata: Metadata = {
   title: "ERP & Dashboards — Paneles de gestión a medida",
@@ -52,6 +53,12 @@ const faqItems = [
   },
 ];
 
+const relatedItems = [
+  { label: "Desarrollo Web", href: "/desarrollo-web", desc: "Landing pages, plataformas SaaS, ERPs y dashboards." },
+  { label: "Bases de Datos", href: "/bases-de-datos", desc: "Diseño, optimización y migración de bases de datos." },
+  { label: "Sistemas Backend", href: "/sistemas-backend", desc: "APIs, bases de datos, colas de trabajo e integraciones." },
+];
+
 export default function ErpDashboardsPage() {
   return (
     <FooterReveal
@@ -79,6 +86,8 @@ export default function ErpDashboardsPage() {
           <ErpPricing />
           <div className="divider" />
           <ErpFaq />
+          <div className="divider" />
+          <RelatedServices items={relatedItems} />
           <div className="divider" />
           <ErpCta />
         </>

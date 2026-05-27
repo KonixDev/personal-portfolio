@@ -13,6 +13,7 @@ import { RedesignProcess } from "./components/process";
 import { RedesignPricing } from "./components/pricing";
 import { RedesignFaq } from "./components/faq";
 import { RedesignCta } from "./components/cta";
+import { RelatedServices } from "../components/related-services";
 
 export const metadata: Metadata = {
   title: "Rediseño Web — Transformá tu sitio en una máquina de conversión",
@@ -52,6 +53,12 @@ const faqItems = [
   },
 ];
 
+const relatedItems = [
+  { label: "SEO & GEO", href: "/seo-geo", desc: "Posicionamiento en Google y búsquedas de IA." },
+  { label: "Desarrollo Web", href: "/desarrollo-web", desc: "Landing pages, plataformas SaaS, ERPs y dashboards." },
+  { label: "Optimización de Sistemas", href: "/optimizacion-sistemas", desc: "Más rápido, más estable, más barato." },
+];
+
 export default function RedesignPage() {
   return (
     <FooterReveal
@@ -79,6 +86,8 @@ export default function RedesignPage() {
           <RedesignPricing />
           <div className="divider" />
           <RedesignFaq />
+          <div className="divider" />
+          <RelatedServices items={relatedItems} />
           <div className="divider" />
           <RedesignCta />
         </>

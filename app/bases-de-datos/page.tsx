@@ -13,6 +13,7 @@ import { DbProcess } from "./components/process";
 import { DbPricing } from "./components/pricing";
 import { DbFaq } from "./components/faq";
 import { DbCta } from "./components/cta";
+import { RelatedServices } from "../components/related-services";
 
 export const metadata: Metadata = {
   title: "Bases de Datos — Diseño, optimización y migración",
@@ -52,6 +53,12 @@ const faqItems = [
   },
 ];
 
+const relatedItems = [
+  { label: "Sistemas Backend", href: "/sistemas-backend", desc: "APIs, bases de datos, colas de trabajo e integraciones." },
+  { label: "Optimización de Sistemas", href: "/optimizacion-sistemas", desc: "Más rápido, más estable, más barato." },
+  { label: "Ciberseguridad", href: "/ciberseguridad", desc: "Auditorías, pentesting y protección de infraestructura." },
+];
+
 export default function BaseDeDatosPage() {
   return (
     <FooterReveal
@@ -79,6 +86,8 @@ export default function BaseDeDatosPage() {
           <DbPricing />
           <div className="divider" />
           <DbFaq />
+          <div className="divider" />
+          <RelatedServices items={relatedItems} />
           <div className="divider" />
           <DbCta />
         </>

@@ -13,6 +13,7 @@ import { BackendStack } from "./components/tech-stack";
 import { BackendPricing } from "./components/pricing";
 import { BackendFaq } from "./components/faq";
 import { BackendCta } from "./components/cta";
+import { RelatedServices } from "../components/related-services";
 
 export const metadata: Metadata = {
   title: "Sistemas Backend — APIs, bases de datos e infraestructura",
@@ -52,6 +53,12 @@ const faqItems = [
   },
 ];
 
+const relatedItems = [
+  { label: "Bases de Datos", href: "/bases-de-datos", desc: "Diseño, optimización y migración de bases de datos." },
+  { label: "Desarrollo Web", href: "/desarrollo-web", desc: "Landing pages, plataformas SaaS, ERPs y dashboards." },
+  { label: "Optimización de Sistemas", href: "/optimizacion-sistemas", desc: "Más rápido, más estable, más barato." },
+];
+
 export default function SistemasBackendPage() {
   return (
     <FooterReveal
@@ -79,6 +86,8 @@ export default function SistemasBackendPage() {
           <BackendPricing />
           <div className="divider" />
           <BackendFaq />
+          <div className="divider" />
+          <RelatedServices items={relatedItems} />
           <div className="divider" />
           <BackendCta />
         </>

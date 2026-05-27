@@ -12,6 +12,7 @@ import { WhatYouGet } from "./components/what-you-get";
 import { SecurityPricing } from "./components/pricing";
 import { SecurityFaq } from "./components/faq";
 import { SecurityCta } from "./components/cta";
+import { RelatedServices } from "../components/related-services";
 
 export const metadata: Metadata = {
   title: "Ciberseguridad — Auditorías, pentesting y protección",
@@ -51,6 +52,12 @@ const faqItems = [
   },
 ];
 
+const relatedItems = [
+  { label: "Optimización de Sistemas", href: "/optimizacion-sistemas", desc: "Más rápido, más estable, más barato." },
+  { label: "Sistemas Backend", href: "/sistemas-backend", desc: "APIs, bases de datos, colas de trabajo e integraciones." },
+  { label: "Bases de Datos", href: "/bases-de-datos", desc: "Diseño, optimización y migración de bases de datos." },
+];
+
 export default function CiberseguridadPage() {
   return (
     <FooterReveal
@@ -75,6 +82,8 @@ export default function CiberseguridadPage() {
           <SecurityPricing />
           <div className="divider" />
           <SecurityFaq />
+          <div className="divider" />
+          <RelatedServices items={relatedItems} />
           <div className="divider" />
           <SecurityCta />
         </>
