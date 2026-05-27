@@ -2,28 +2,43 @@ import { Header } from "./components/header";
 import { Hero } from "./components/hero";
 import { Stack } from "./components/stack";
 import { Work } from "./components/work";
-import { Manifesto } from "./components/manifesto";
 import { Services } from "./components/services";
+import { Included } from "./components/included";
 import { Process } from "./components/process";
-import { About } from "./components/about";
+import { Pricing } from "./components/pricing";
 import { Faq } from "./components/faq";
 import { Contact } from "./components/contact";
+import { Marquee } from "./components/marquee";
 import { Footer } from "./components/footer";
+import { FooterReveal } from "./components/footer-reveal";
 
 export default function Page() {
   return (
-    <main className="min-h-screen">
-      <Header />
-      <Hero />
-      <Stack />
-      <Work />
-      <Manifesto />
-      <Services />
-      <Process />
-      <About />
-      <Faq />
-      <Contact />
-      <Footer />
-    </main>
+    <FooterReveal
+      main={
+        <>
+          <Header />
+          <Hero />
+          <div className="divider" />
+          <Stack />
+          <div className="divider" />
+          <Services />
+          <div className="divider" />
+          <Work />
+          <div className="divider" />
+          <Included />
+          <div className="divider" />
+          <Process />
+          <div className="divider" />
+          <Pricing />
+          <div className="divider" />
+          <Faq />
+          <div className="divider" />
+          <Contact />
+          <Marquee />
+        </>
+      }
+      footer={<Footer />}
+    />
   );
 }

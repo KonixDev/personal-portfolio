@@ -1,217 +1,204 @@
-import { waLink } from "@/lib/site-config";
+"use client";
 
-type Tier = {
-  key: "mvp" | "saas" | "custom";
-  name: string;
-  price: string;
-  priceItalic?: string;
-  italic: string;
-  lede: string;
-  includes: string[];
-  timeline: string;
-  featured?: boolean;
-  waMessage: string;
-};
-
-const tiers: Tier[] = [
+import { motion, useInView } from "framer-motion";
+import { useRef, useState } from "react";
+const categories = [
   {
-    key: "mvp",
-    name: "Sprint MVP",
-    price: "Desde $2.500",
-    italic: "validar rápido",
-    lede: "Para founders que necesitan algo real en manos de usuarios antes que perfecto en una demo.",
-    includes: [
-      "Landing + autenticación",
-      "1 feature núcleo, end-to-end",
-      "Deploy a producción, dominio propio",
-      "2 semanas de soporte post-launch",
-    ],
-    timeline: "2 — 3 semanas",
-    waMessage: "Hola Martín, quiero arrancar un Sprint MVP.",
+    tab: "Mobile & TV",
+    heading: "Apps que tus usuarios quieren abrir.",
+    desc: "iOS, Android y Android TV. Nativas o cross-platform. Publicación en Play Store y App Store incluida.",
+    items: ["Apps Mobile", "Android TV", "Play Store & App Store"],
+    visual: MobileVisual,
   },
   {
-    key: "saas",
-    name: "Build SaaS",
-    price: "Desde $5.000",
-    italic: "producto real",
-    lede: "El boilerplate hecho a medida. Multi-usuario, pagos, dashboard administrativo, todo desde día uno.",
-    includes: [
-      "3 a 5 features núcleo",
-      "Pagos (Stripe, MercadoPago, LemonSqueezy)",
-      "Multi-tenant, roles, invitaciones",
-      "Observability + tests + docs",
-    ],
-    timeline: "4 — 8 semanas",
-    featured: true,
-    waMessage: "Hola Martín, quiero construir un SaaS.",
+    tab: "Web & Backend",
+    heading: "Sistemas que escalan con tu negocio.",
+    desc: "Desde landing pages hasta ERPs complejos. APIs, bases de datos, dashboards, integraciones.",
+    items: ["Desarrollo Web", "Sistemas Backend", "Base de Datos", "ERP & Dashboards"],
+    visual: WebVisual,
   },
   {
-    key: "custom",
-    name: "Custom",
-    price: "A medida",
-    priceItalic: "A medida",
-    italic: "conversemos",
-    lede: "Integraciones, equipos extendidos, discovery profundo, productos enterprise con compliance.",
-    includes: [
-      "Discovery + arquitectura",
-      "Retainer mensual",
-      "Equipo extendido (1 a 3 devs)",
-      "Migraciones, integraciones, scale",
-    ],
-    timeline: "Variable",
-    waMessage: "Hola Martín, tengo un proyecto Custom que conversar.",
+    tab: "Seguridad & Optimización",
+    heading: "Tu sistema, más rápido y más seguro.",
+    desc: "Auditorías de seguridad, optimización de rendimiento, posicionamiento en buscadores, y rediseño de arquitectura.",
+    items: ["Ciberseguridad", "Optimización de Sistemas", "SEO & GEO", "Rediseño Web"],
+    visual: SecurityVisual,
   },
-];
+] as const;
 
 export function Services() {
+  const [active, setActive] = useState(0);
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const cat = categories[active];
+  const Visual = cat.visual;
+
   return (
-    <section id="services" className="hairline-b bg-[var(--color-paper-2)]">
-      <div className="mx-auto max-w-[1280px] px-6 py-24 lg:px-12 lg:py-32">
-        <div className="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-12">
-          <div className="lg:col-span-3">
-            <div className="label-mono">03 · Servicios</div>
-          </div>
-          <div className="lg:col-span-9">
-            <h2 className="headline text-[clamp(34px,4vw,56px)]">
-              Tres formas de empezar.{" "}
-              <span className="serif-italic text-[var(--color-accent)]">
-                Vos elegís el alcance.
+    <section id="servicios" ref={ref} className="section-padding grid place-items-center">
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className="text-feature text-center"
+      >
+        Todo lo que necesitás, en un solo lugar.
+      </motion.h2>
+
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6, delay: 0.15 }}
+        className="mt-10 flex items-center gap-2 rounded-full bg-[var(--color-bg-secondary)] p-1"
+      >
+        {categories.map((c, i) => (
+          <button
+            key={c.tab}
+            onClick={() => setActive(i)}
+            className={
+              "rounded-full px-5 py-2.5 text-[14px] font-semibold transition-all " +
+              (active === i
+                ? "bg-[var(--color-bg-inverse)] text-[var(--color-text-inverse)]"
+                : "text-[var(--color-text-secondary)] hover:text-[var(--color-text)]")
+            }
+          >
+            {c.tab}
+          </button>
+        ))}
+      </motion.div>
+
+      <motion.div
+        key={active}
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mt-16 grid w-full max-w-[1200px] grid-cols-1 items-center gap-16 lg:grid-cols-2"
+      >
+        <div>
+          <h3 className="text-title">{cat.heading}</h3>
+          <p className="text-body-sm mt-4 max-w-[440px]">{cat.desc}</p>
+          <div className="mt-8 flex flex-wrap gap-2">
+            {cat.items.map((item) => (
+              <span
+                key={item}
+                className="rounded-full bg-[var(--color-bg-secondary)] px-4 py-2 text-[13px] font-medium text-[var(--color-text)]"
+              >
+                {item}
               </span>
-            </h2>
-            <p className="mt-5 max-w-[58ch] text-[16px] leading-[1.55] text-[var(--color-muted)]">
-              Scope cerrado, precio fijo, plan de entrega por hito. El precio
-              se ajusta a la complejidad — te confirmo el número exacto después
-              de la primera llamada.
-            </p>
+            ))}
           </div>
         </div>
-
-        <ul className="grid grid-cols-1 gap-0 md:grid-cols-3">
-          {tiers.map((tier, i) => {
-            const isFeat = tier.featured;
-            return (
-              <li
-                key={tier.key}
-                className={
-                  "relative flex flex-col gap-6 bg-[var(--color-card)] p-8 lg:p-10 " +
-                  "border border-[var(--color-rule)] " +
-                  (i > 0 ? "md:border-l-0 " : "") +
-                  (isFeat
-                    ? "md:bg-[var(--color-ink)] md:text-[var(--color-paper)]"
-                    : "")
-                }
-              >
-                {isFeat && (
-                  <span className="absolute -top-3 left-8 rounded-full bg-[var(--color-accent)] px-3 py-1 font-mono text-[10px] tracking-[0.14em] uppercase text-white">
-                    ★ Más elegido
-                  </span>
-                )}
-
-                <div className="flex items-baseline justify-between">
-                  <span
-                    className={
-                      "font-mono text-[10.5px] tracking-[0.14em] uppercase " +
-                      (isFeat
-                        ? "text-[var(--color-muted-soft)]"
-                        : "text-[var(--color-muted)]")
-                    }
-                  >
-                    {tier.price}
-                  </span>
-                  <span
-                    className={
-                      "font-mono text-[10.5px] tracking-[0.14em] uppercase " +
-                      (isFeat
-                        ? "text-[var(--color-muted-soft)]"
-                        : "text-[var(--color-muted)]")
-                    }
-                  >
-                    0{i + 1}
-                  </span>
-                </div>
-
-                <h3
-                  className={
-                    "text-[36px] leading-none font-medium tracking-[-0.035em] " +
-                    (isFeat
-                      ? "text-[var(--color-paper)]"
-                      : "text-[var(--color-ink)]")
-                  }
-                >
-                  {tier.name}
-                  <span className="serif-italic ml-2 text-[24px] text-[var(--color-accent)]">
-                    {tier.italic}
-                  </span>
-                </h3>
-
-                <p
-                  className={
-                    "max-w-[36ch] text-[14px] leading-[1.55] " +
-                    (isFeat
-                      ? "text-[var(--color-muted-soft)]"
-                      : "text-[var(--color-muted)]")
-                  }
-                >
-                  {tier.lede}
-                </p>
-
-                <ul
-                  className={
-                    "mt-2 flex flex-col gap-2.5 text-[13.5px] " +
-                    (isFeat
-                      ? "text-[var(--color-paper)]"
-                      : "text-[var(--color-ink-soft)]")
-                  }
-                >
-                  {tier.includes.map((line) => (
-                    <li key={line} className="flex items-start gap-3">
-                      <span className="mt-2 inline-block h-px w-3 shrink-0 bg-[var(--color-muted-soft)]" />
-                      <span>{line}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div
-                  className={
-                    "mt-auto flex items-end justify-between border-t pt-5 " +
-                    (isFeat
-                      ? "border-[#222]"
-                      : "border-[var(--color-rule)]")
-                  }
-                >
-                  <span
-                    className={
-                      "font-mono text-[10.5px] tracking-[0.14em] uppercase " +
-                      (isFeat
-                        ? "text-[var(--color-muted-soft)]"
-                        : "text-[var(--color-muted)]")
-                    }
-                  >
-                    {tier.timeline}
-                  </span>
-                  <a
-                    href={waLink(tier.waMessage)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={
-                      "font-mono text-[12px] " +
-                      (isFeat
-                        ? "text-[var(--color-paper)] hover:text-[var(--color-accent-bright)]"
-                        : "text-[var(--color-ink)] hover:text-[var(--color-accent)]")
-                    }
-                  >
-                    Empezar →
-                  </a>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-
-        <p className="mt-8 text-center font-mono text-[10.5px] tracking-[0.14em] uppercase text-[var(--color-muted)]">
-          Precios en USD · Pago 50/50 o por hito · Sin sorpresas
-        </p>
-      </div>
+        <div className="flex justify-center">
+          <Visual />
+        </div>
+      </motion.div>
     </section>
+  );
+}
+
+function MobileVisual() {
+  return (
+    <div className="relative flex gap-4">
+      <PhoneMockup label="iOS App" color="#6366F1">
+        <div className="space-y-3 p-4">
+          <div className="h-3 w-20 rounded bg-white/20" />
+          <div className="h-24 rounded-xl bg-white/10" />
+          <div className="h-3 w-16 rounded bg-white/15" />
+          <div className="grid grid-cols-2 gap-2">
+            <div className="h-14 rounded-lg bg-white/10" />
+            <div className="h-14 rounded-lg bg-white/10" />
+          </div>
+        </div>
+      </PhoneMockup>
+      <PhoneMockup label="Android" color="#22C55E" offset>
+        <div className="space-y-3 p-4">
+          <div className="h-3 w-24 rounded bg-white/20" />
+          <div className="flex gap-2">
+            <div className="h-10 w-10 rounded-full bg-white/15" />
+            <div className="flex-1 space-y-1.5">
+              <div className="h-2.5 w-full rounded bg-white/15" />
+              <div className="h-2.5 w-3/4 rounded bg-white/10" />
+            </div>
+          </div>
+          <div className="h-20 rounded-xl bg-white/10" />
+          <div className="h-10 rounded-lg bg-white/20" />
+        </div>
+      </PhoneMockup>
+    </div>
+  );
+}
+
+function PhoneMockup({ label, color, children, offset = false }: { label: string; color: string; children: React.ReactNode; offset?: boolean }) {
+  return (
+    <div className={"w-[160px] rounded-[28px] border border-[var(--color-border)] bg-[var(--color-bg-secondary)] p-1.5 " + (offset ? "mt-8" : "")}>
+      <div className="overflow-hidden rounded-[22px]" style={{ background: color }}>
+        <div className="flex items-center justify-center py-2">
+          <div className="h-1.5 w-12 rounded-full bg-white/30" />
+        </div>
+        {children}
+        <div className="flex items-center justify-center py-3">
+          <span className="text-[10px] font-medium text-white/50">{label}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function WebVisual() {
+  return (
+    <div className="w-full max-w-[480px] overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-bg-secondary)]">
+      <div className="flex items-center gap-2 border-b border-[var(--color-border)] px-4 py-3">
+        <div className="flex gap-1.5">
+          <div className="h-3 w-3 rounded-full bg-[#ff5f56]" />
+          <div className="h-3 w-3 rounded-full bg-[#ffbd2e]" />
+          <div className="h-3 w-3 rounded-full bg-[#27c93f]" />
+        </div>
+        <div className="ml-4 h-5 flex-1 rounded bg-[var(--color-bg-tertiary)]" />
+      </div>
+      <div className="p-5 space-y-4">
+        <div className="flex items-center gap-3">
+          <div className="h-8 w-8 rounded-lg bg-[var(--color-bg-inverse)]" />
+          <div className="h-3 w-24 rounded bg-[var(--color-bg-tertiary)]" />
+          <div className="ml-auto h-3 w-16 rounded bg-[var(--color-bg-tertiary)]" />
+        </div>
+        <div className="grid grid-cols-3 gap-3">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="space-y-2 rounded-xl bg-white p-3">
+              <div className="h-16 rounded-lg bg-[var(--color-bg-secondary)]" />
+              <div className="h-2 w-full rounded bg-[var(--color-bg-tertiary)]" />
+              <div className="h-2 w-2/3 rounded bg-[var(--color-bg-tertiary)]" />
+            </div>
+          ))}
+        </div>
+        <div className="flex gap-3">
+          <div className="h-20 flex-1 rounded-xl bg-white" />
+          <div className="h-20 w-1/3 rounded-xl bg-[var(--color-bg-inverse)]" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SecurityVisual() {
+  return (
+    <div className="w-full max-w-[400px] space-y-3">
+      {[
+        { label: "OWASP Top 10", status: "Passed", color: "#22C55E" },
+        { label: "SQL Injection", status: "0 vulnerabilities", color: "#22C55E" },
+        { label: "XSS Protection", status: "Passed", color: "#22C55E" },
+        { label: "Performance Score", status: "96 / 100", color: "#3B82F6" },
+        { label: "Core Web Vitals", status: "All green", color: "#22C55E" },
+      ].map((item) => (
+        <div
+          key={item.label}
+          className="flex items-center justify-between rounded-2xl border border-[var(--color-border)] bg-white px-5 py-4"
+        >
+          <span className="text-[14px] font-medium text-[var(--color-text)]">{item.label}</span>
+          <span className="flex items-center gap-2 text-[13px] font-semibold" style={{ color: item.color }}>
+            <span className="h-2 w-2 rounded-full" style={{ background: item.color }} />
+            {item.status}
+          </span>
+        </div>
+      ))}
+    </div>
   );
 }

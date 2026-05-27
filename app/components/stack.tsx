@@ -1,57 +1,118 @@
-const items = [
-  "Next.js",
-  "Bun",
-  "Prisma",
-  "Postgres",
-  "TypeScript",
-  "Tailwind",
-  "Resend",
-  "Stripe",
-  "Vercel",
-  "Neon",
-  "Sentry",
-  "Playwright",
+"use client";
+
+import { projects } from "@/lib/site-config";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { useRef, useState } from "react";
+import Image from "next/image";
+
+
+const positions = [
+  { x: 8, y: 8 },
+  { x: 75, y: 6 },
+  { x: 3, y: 45 },
+  { x: 85, y: 50 },
+  { x: 15, y: 78 },
+  { x: 72, y: 82 },
 ];
 
 export function Stack() {
-  const sequence = [...items, ...items];
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const counterOpacity = useTransform(scrollYProgress, [0.1, 0.25, 0.65, 0.8], [0, 1, 1, 0]);
+  const counterScale = useTransform(scrollYProgress, [0.1, 0.25, 0.65, 0.8], [0.95, 1, 1, 0.95]);
+  const progressWidth = useTransform(scrollYProgress, [0.1, 0.65], ["0%", "100%"]);
 
   return (
-    <section className="hairline-b overflow-hidden bg-[var(--color-paper-warm)]/35">
-      <div className="mx-auto flex max-w-[1280px] items-center gap-10 px-6 py-7 lg:px-12">
-        <span className="hidden shrink-0 font-mono text-[10.5px] tracking-[0.14em] uppercase text-[var(--color-muted)] md:inline">
-          Stack ·{" "}
-          <span className="serif-italic text-[var(--color-ink)]">probado</span>
-        </span>
+    <div ref={containerRef} className="relative h-[250vh]">
+      <div className="sticky top-0 grid h-screen place-items-center overflow-hidden">
+        {projects.map((project, i) => {
+          const pos = positions[i];
+          return (
+            <motion.a
+              key={project.name}
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute transition-transform hover:scale-105"
+              style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
+              animate={{ y: [0, -8, 0] }}
+              transition={{
+                duration: 5 + i * 0.6,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.5,
+              }}
+              title={project.name}
+            >
+              <Image
+                src={project.icon}
+                alt={project.name}
+                width={80}
+                height={80}
+                className="h-14 w-14 object-contain md:h-20 md:w-20"
+                unoptimized
+              />
+            </motion.a>
+          );
+        })}
 
-        <div className="relative flex-1 overflow-hidden">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[var(--color-paper)] to-transparent"
-          />
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[var(--color-paper)] to-transparent"
-          />
+        <motion.div
+          style={{ opacity: counterOpacity, scale: counterScale }}
+          className="relative z-10 grid place-items-center gap-y-8 text-center"
+        >
+          <p className="text-[20px] font-semibold tracking-tight text-[var(--color-text-secondary)]">
+            Productos propios en producción
+          </p>
 
-          <ul className="marquee-track flex w-max items-center gap-10">
-            {sequence.map((name, i) => (
-              <li
-                key={`${name}-${i}`}
-                className="flex items-center gap-10 font-mono text-[12px] tracking-[0.18em] uppercase text-[var(--color-ink)]"
-              >
-                {name}
-                <span
-                  aria-hidden
-                  className="serif-italic text-[18px] text-[var(--color-accent)]"
-                >
-                  ✦
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
+          <div className="flex flex-col items-center gap-3">
+            <AnimatedCounter label="productos live" end={6} scrollProgress={scrollYProgress} range={[0.15, 0.35]} />
+            <AnimatedCounter label="usuarios activos" end={2400} suffix="+" scrollProgress={scrollYProgress} range={[0.2, 0.4]} />
+            <AnimatedCounter label="commits en el último año" end={12000} suffix="+" scrollProgress={scrollYProgress} range={[0.25, 0.45]} />
+          </div>
+
+          <div className="mt-4 h-[3px] w-48 overflow-hidden rounded-full bg-[var(--color-bg-tertiary)]">
+            <motion.div
+              className="h-full rounded-full bg-[var(--color-text)]"
+              style={{ width: progressWidth }}
+            />
+          </div>
+        </motion.div>
       </div>
-    </section>
+    </div>
+  );
+}
+
+function AnimatedCounter({
+  label,
+  end,
+  suffix = "",
+  scrollProgress,
+  range,
+}: {
+  label: string;
+  end: number;
+  suffix?: string;
+  scrollProgress: ReturnType<typeof useScroll>["scrollYProgress"];
+  range: [number, number];
+}) {
+  const [display, setDisplay] = useState(0);
+  const raw = useTransform(scrollProgress, range, [0, end]);
+
+  useMotionValueEvent(raw, "change", (v) => {
+    setDisplay(Math.round(v));
+  });
+
+  return (
+    <div className="flex items-baseline gap-3">
+      <span className="text-showcase tabular-nums">
+        {display.toLocaleString("es-AR")}
+      </span>
+      {suffix && <span className="text-showcase tabular-nums">{suffix}</span>}
+      <span className="text-body-sm hidden md:inline">{label}</span>
+    </div>
   );
 }

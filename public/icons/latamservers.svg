@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="LATAM Servers">
+  <rect width="64" height="64" rx="10" fill="#1a1612" />
+  <g transform="rotate(-6 31 32)" fill="#ede4d3"
+     font-family="'Bricolage Grotesque', 'Inter Black', system-ui, sans-serif"
+     font-weight="900" font-size="18" letter-spacing="-0.04em">
+    <circle cx="19" cy="32" r="2.6" fill="#d4a01e" />
+    <text x="24" y="38" font-size="20">LAT</text>
+  </g>
+</svg>
