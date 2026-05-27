@@ -23,6 +23,7 @@ const serviceLinks = [
 const navItems = [
   { label: "Proyectos", href: "/#proyectos" },
   { label: "Proceso", href: "/#proceso" },
+  { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/#faq" },
 ];
 

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { getAllPosts } from "@/lib/blog";
 
 export const dynamic = "force-static";
 export const baseUrl = "https://martincoll.dev";
@@ -19,6 +20,7 @@ const verticals = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date().toISOString().split("T")[0];
+  const posts = getAllPosts();
 
   return [
     {
@@ -32,6 +34,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly" as const,
       priority: 0.8,
+    })),
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    },
+    ...posts.map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: post.date,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
     })),
   ];
 }

@@ -23,8 +23,9 @@ const columns = [
     ],
   },
   {
-    title: "Conectar",
+    title: "Recursos",
     links: [
+      { label: "Blog", href: "/blog" },
       { label: "WhatsApp", href: `https://wa.me/${site.whatsapp}` },
       { label: "Email", href: `mailto:${site.email}` },
       { label: "GitHub", href: site.socials.github },

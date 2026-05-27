@@ -1,0 +1,125 @@
+---
+title: "Desarrollo de apps para Android TV y streaming en Argentina"
+description: "Todo lo que necesitás saber para crear una app de streaming o canal de TV para Android TV. Tecnologías, costos, tiempos y el proceso completo."
+date: "2026-05-17"
+tags: ["Android TV", "Streaming", "Kotlin", "Apps TV"]
+vertical: "android-tv"
+readTime: "8 min"
+---
+
+## ¿Por qué Android TV?
+
+Android TV está en millones de televisores en Argentina y Latinoamérica: Sony, TCL, Xiaomi, Noblex, y cualquier TV con Google TV o Chromecast integrado. A diferencia de una app mobile, una app de TV te pone **en la pantalla más grande de la casa** — donde la gente pasa horas consumiendo contenido.
+
+Si tenés un canal de TV, producís contenido audiovisual, o querés crear una plataforma de streaming, Android TV es el camino.
+
+## Tipos de apps de TV que se pueden hacer
+
+### 1. Plataforma de streaming (tipo Netflix)
+
+Catálogo de películas, series o contenido educativo con:
+- Navegación por categorías y carousels
+- Reproductor con calidades adaptativas (HLS/DASH)
+- Perfiles de usuario
+- Suscripciones con Google Play Billing
+- Historial y "seguir viendo"
+
+**Costo estimado**: $10.000 — $20.000 USD
+**Tiempo**: 10 — 14 semanas
+
+### 2. Canal de TV en vivo
+
+App para un canal específico que transmite en vivo con:
+- Stream en vivo 24/7
+- Guía de programación (EPG)
+- Archivo de contenido bajo demanda
+- Notificaciones de programas destacados
+
+**Costo estimado**: $5.000 — $8.000 USD
+**Tiempo**: 6 — 8 semanas
+
+### 3. Digital signage / Cartelería digital
+
+Pantallas en locales, restaurantes u oficinas que muestran contenido administrado remotamente:
+- Playlists de contenido
+- Horarios programables
+- Administración remota desde la web
+- Multi-pantalla
+
+**Costo estimado**: $4.000 — $7.000 USD
+**Tiempo**: 4 — 6 semanas
+
+## La interfaz de TV es diferente
+
+Diseñar para TV no es achicar una app mobile. Las diferencias clave:
+
+### Navegación con D-pad
+
+No hay touch ni mouse. El usuario navega con las flechas del control remoto. Tu app necesita:
+- **Focus management** claro — siempre debe ser visible qué elemento está seleccionado
+- **Leanback UI** — la librería de Google para interfaces de TV
+- **Shortcuts** — botones dedicados del control (play, pause, back, home)
+
+### Distancia de lectura
+
+El usuario está a 2-3 metros de la pantalla. La tipografía necesita ser grande y el contraste alto. Los detalles finos que funcionan en mobile son invisibles en TV.
+
+### Sin teclado
+
+Escribir texto con un control remoto es una experiencia terrible. Las apps de TV bien diseñadas minimizan la necesidad de escribir:
+- Búsqueda por voz
+- QR code para login desde el celular
+- App companion que funciona como teclado
+
+## Tecnologías que usamos
+
+### Para la app de TV
+- **Kotlin** — el lenguaje oficial de Android
+- **Jetpack Compose for TV** — UI declarativa optimizada para TV
+- **ExoPlayer** — reproductor de video de Google, soporta HLS, DASH, DRM
+- **Leanback** — componentes de interfaz para TV (carousels, detail views, search)
+
+### Para el streaming
+- **HLS (HTTP Live Streaming)** — el estándar para streaming adaptativo
+- **DASH** — alternativa a HLS, más flexible
+- **Cloudflare Stream** o **AWS MediaConvert** — para transcodificar y distribuir video
+- **OBS / vMix** — para transmitir en vivo desde un estudio
+
+### Para el backend
+- **Node.js + PostgreSQL** — gestión de contenido, usuarios y suscripciones
+- **Redis** — cache de catálogo y sesiones
+- **Cloudflare CDN** — distribución de video con baja latencia
+
+## Monetización
+
+### Suscripción (SVOD)
+Cobro mensual o anual via Google Play Billing. Google se queda con el 15% (primeros $1M/año) o 30%.
+
+### Publicidad (AVOD)
+Contenido gratis con ads. Integración con Google Ad Manager o redes programáticas.
+
+### Pago por contenido (TVOD)
+Compra o alquiler individual de películas o eventos.
+
+### Modelo mixto
+Contenido gratis con ads + premium sin ads. El modelo más común para canales de TV en LATAM.
+
+## ¿Necesito una app mobile además?
+
+Depende:
+
+- **Para streaming completo**: sí, recomendamos una app companion que funcione como segundo control, buscador y para ver contenido fuera de casa
+- **Para un canal simple**: no necesariamente, pero un link al stream mobile ayuda
+- **Para digital signage**: no, solo se necesita un panel de administración web
+
+## El proceso completo
+
+1. **Definición** (1 semana): qué contenido, qué modelo de negocio, qué plataformas
+2. **Diseño Leanback** (1-2 semanas): wireframes para TV, navegación con D-pad
+3. **Desarrollo** (4-10 semanas): app + backend + panel de contenido
+4. **Testing en dispositivos** (1 semana): probamos en TVs reales, no solo emuladores
+5. **Publicación** (1 semana): subimos a Play Store en la categoría Android TV
+
+## Conclusión
+
+Android TV es una plataforma subutilizada con enorme potencial, especialmente en Argentina donde la penetración de Smart TVs crece año a año. Si producís contenido audiovisual, tener tu propia app de TV te da control total sobre la experiencia, los datos y la monetización — sin depender de plataformas de terceros.
