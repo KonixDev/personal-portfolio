@@ -1,0 +1,165 @@
+---
+title: "Cómo diseñar una base de datos para tu proyecto (sin arrepentirte después)"
+description: "Guía práctica para diseñar esquemas de base de datos que escalen. Normalización, relaciones, índices y errores comunes que se pagan caro a largo plazo."
+date: "2026-05-09"
+tags: ["Base de datos", "PostgreSQL", "Diseño", "Backend"]
+vertical: "bases-de-datos"
+readTime: "9 min"
+---
+
+## Por qué el diseño de la base importa tanto
+
+La base de datos es el cimiento de tu sistema. Si está bien diseñada, todo lo que construyas encima funciona mejor: las queries son rápidas, los datos son consistentes, y agregar funcionalidades nuevas es simple. Si está mal diseñada, cada cambio es un dolor de cabeza, las queries son lentas, y los datos se corrompen.
+
+Lo peor: los errores de diseño de base de datos son los más caros de corregir después. Migrar un esquema con millones de registros no es trivial.
+
+## Paso 1: Entendé los datos antes de modelar
+
+No abras el editor de SQL todavía. Primero respondé:
+
+- **¿Qué entidades tiene tu sistema?** — usuarios, productos, pedidos, facturas...
+- **¿Cómo se relacionan?** — un usuario tiene muchos pedidos, un pedido tiene muchos productos
+- **¿Qué datos necesitás consultar juntos?** — esto define los JOINs más frecuentes
+- **¿Cuántos registros vas a tener?** — 1.000 y 10.000.000 se diseñan diferente
+
+Un diagrama en papel o en una herramienta como dbdiagram.io vale más que 3 horas de código SQL.
+
+## Paso 2: Normalización — lo justo y necesario
+
+### ¿Qué es normalizar?
+
+Organizar los datos para evitar duplicación. En vez de guardar el nombre del cliente en cada pedido, guardás un `cliente_id` que referencia a la tabla de clientes.
+
+### Las 3 formas normales que importan
+
+**1NF**: cada columna tiene un solo valor (nada de "tag1, tag2, tag3" en un campo de texto).
+
+**2NF**: todos los campos dependen de la clave primaria completa, no de una parte.
+
+**3NF**: ningún campo depende de otro campo que no sea la clave primaria.
+
+### ¿Cuándo desnormalizar?
+
+Cuando la performance lo requiere. Si necesitás mostrar un dashboard con el nombre del cliente en cada pedido y hacés millones de queries, guardar el nombre duplicado puede tener sentido. Pero hacelo conscientemente, no por pereza.
+
+**Regla**: normalizá por defecto, desnormalizá solo cuando tenés evidencia de que es necesario.
+
+## Paso 3: Elegí bien los tipos de datos
+
+### IDs: UUID vs autoincrement
+
+- **UUID**: universal, no revela cuántos registros tenés, mejor para APIs públicas y multi-tenant
+- **Autoincrement (SERIAL)**: más simple, más eficiente en JOINs, ocupa menos espacio
+
+Recomendación: **UUID para entidades principales** (users, orgs), autoincrement para tablas internas (logs, eventos).
+
+### Timestamps: always with timezone
+
+Siempre usá `TIMESTAMPTZ`, no `TIMESTAMP`. Sin timezone, tu app va a tener bugs cuando tus usuarios estén en zonas horarias diferentes.
+
+### Texto: TEXT vs VARCHAR
+
+En PostgreSQL no hay diferencia de performance. Usá `TEXT` y validá la longitud en la aplicación. `VARCHAR(255)` es un vestigio de MySQL que no tiene sentido en Postgres.
+
+### Enums vs lookup tables
+
+Para valores fijos (estados: "pendiente", "pagado", "cancelado"):
+
+- **Enum de PostgreSQL**: simple, pero modificar los valores requiere una migración
+- **Lookup table**: más flexible, podés agregar valores sin migración
+- **Enum en la app** (string en DB): lo más simple, la validación es en código
+
+Para menos de 10 valores que cambian poco, un enum en la app suele ser suficiente.
+
+## Paso 4: Relaciones — la parte más importante
+
+### One-to-many (1:N)
+
+Un cliente tiene muchos pedidos. Se resuelve con una foreign key:
+
+```sql
+CREATE TABLE pedidos (
+  id UUID PRIMARY KEY,
+  cliente_id UUID REFERENCES clientes(id),
+  total NUMERIC(10,2)
+);
+```
+
+### Many-to-many (N:M)
+
+Un pedido tiene muchos productos, un producto está en muchos pedidos. Se resuelve con una tabla intermedia:
+
+```sql
+CREATE TABLE pedido_productos (
+  pedido_id UUID REFERENCES pedidos(id),
+  producto_id UUID REFERENCES productos(id),
+  cantidad INTEGER,
+  PRIMARY KEY (pedido_id, producto_id)
+);
+```
+
+### One-to-one (1:1)
+
+Raro pero existe. Un usuario tiene un perfil. Puede ir en la misma tabla o separada si el perfil tiene muchos campos opcionales.
+
+## Paso 5: Índices — no adivinar, medir
+
+### Qué indexar
+
+- Columnas que aparecen en `WHERE` frecuentemente
+- Columnas de `JOIN` (foreign keys)
+- Columnas de `ORDER BY` en queries de listado
+
+### Qué NO indexar
+
+- Columnas con poca cardinalidad (ej: `estado` con 3 valores posibles — en tablas chicas no ayuda)
+- Tablas con pocos registros (< 1000 filas)
+- Columnas que se escriben mucho más de lo que se leen
+
+### Índices compuestos
+
+Si tu query filtra por `org_id` Y ordena por `created_at`, un índice compuesto es más eficiente que dos índices separados:
+
+```sql
+CREATE INDEX idx_pedidos_org_created
+ON pedidos(org_id, created_at DESC);
+```
+
+El orden de las columnas importa: la primera columna es la que más filtra.
+
+## Errores que se pagan caro
+
+### 1. No usar foreign keys
+
+"Las validamos en la aplicación". Hasta que un bug deja un `pedido_id` apuntando a un pedido que no existe. Las foreign keys son la última línea de defensa para la integridad de datos.
+
+### 2. Guardar todo en JSON
+
+PostgreSQL soporta JSON, pero eso no significa que debas meter todo ahí. Si necesitás filtrar, ordenar o hacer JOIN por un campo, debería ser una columna, no un campo dentro de un JSON.
+
+### 3. No tener `created_at` y `updated_at`
+
+Toda tabla debería tener estos dos campos. Parecen innecesarios hasta que necesitás saber cuándo se creó un registro y no tenés la información.
+
+### 4. Soft delete mal implementado
+
+Agregar `deleted_at` a cada tabla parece buena idea hasta que te olvidás de filtrar por `WHERE deleted_at IS NULL` en una de las 50 queries que tocan esa tabla. Si usás soft delete, hacelo con cuidado — o usá una tabla de historial separada.
+
+### 5. No planificar migraciones
+
+Cambiar un esquema en producción sin un sistema de migraciones versionadas es como operar sin anestesia. Usá Prisma Migrate, Flyway, o migraciones SQL manuales versionadas.
+
+## PostgreSQL vs MySQL vs MongoDB
+
+### PostgreSQL
+Nuestra recomendación por defecto. JSON nativo, full-text search, row-level security, extensiones (PostGIS, pgvector). El más versátil.
+
+### MySQL
+Bueno para reads pesados, amplio soporte en hosting compartido. Si ya lo usás y funciona, no hay necesidad de migrar.
+
+### MongoDB
+Para datos no estructurados que cambian de forma frecuentemente. No lo uses como reemplazo de una base relacional — si tus datos tienen relaciones, usá una base relacional.
+
+## Conclusión
+
+Diseñar bien una base de datos es una inversión que se paga en velocidad, estabilidad y facilidad de mantenimiento. Las reglas clave: normalizá por defecto, usá foreign keys, indexá basado en datos reales (no intuición), y tené un sistema de migraciones desde el día uno. Tu yo del futuro te lo va a agradecer.

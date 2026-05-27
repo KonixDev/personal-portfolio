@@ -1,0 +1,142 @@
+---
+title: "API REST vs GraphQL: cuál elegir para tu backend"
+description: "Comparación práctica entre REST y GraphQL. Cuándo conviene cada uno, ventajas, desventajas y en qué casos usar ambos en el mismo proyecto."
+date: "2026-05-07"
+tags: ["Backend", "API", "REST", "GraphQL", "Arquitectura"]
+vertical: "sistemas-backend"
+readTime: "8 min"
+---
+
+## La respuesta rápida
+
+**REST** es la opción correcta para la mayoría de los proyectos. **GraphQL** es mejor cuando tenés múltiples clientes (web, mobile, TV) con necesidades de datos muy diferentes, o cuando tu API necesita flexibilidad extrema en las consultas.
+
+Si estás arrancando un proyecto y no tenés un motivo específico para elegir GraphQL, elegí REST. Es más simple, tiene mejor tooling, y es más fácil de cachear.
+
+## Qué es cada uno
+
+### REST
+
+Una API organizada alrededor de **recursos** (URLs) con operaciones HTTP estándar:
+
+- `GET /api/users` — listar usuarios
+- `GET /api/users/123` — obtener un usuario
+- `POST /api/users` — crear un usuario
+- `PUT /api/users/123` — actualizar un usuario
+- `DELETE /api/users/123` — eliminar un usuario
+
+Cada endpoint retorna una estructura de datos fija. Si necesitás más o menos datos, creás un nuevo endpoint o usás query params.
+
+### GraphQL
+
+Un **query language** donde el cliente pide exactamente los campos que necesita:
+
+```graphql
+query {
+  user(id: "123") {
+    name
+    email
+    orders {
+      total
+      status
+    }
+  }
+}
+```
+
+Un solo endpoint (`POST /graphql`) que acepta cualquier consulta. El cliente decide qué datos traer, no el servidor.
+
+## Cuándo elegir REST
+
+### Tu proyecto es "normal"
+
+Si estás haciendo un SaaS, un e-commerce, un CRM, o cualquier aplicación CRUD típica, REST es suficiente y más simple. No necesitás la flexibilidad de GraphQL si tus pantallas siempre piden los mismos datos.
+
+### Cacheo es importante
+
+Las respuestas REST se cachean trivialmente con HTTP cache headers, CDN, y Redis. GraphQL usa POST para todo, lo que complica el cacheo a nivel HTTP.
+
+### Tu equipo no conoce GraphQL
+
+La curva de aprendizaje de GraphQL es real: schema definitions, resolvers, DataLoader para evitar N+1, cache invalidation. Si tu equipo ya sabe REST, no hay razón para agregar complejidad.
+
+### Integraciones con terceros
+
+La mayoría de las APIs del mundo son REST. Si tus clientes o partners van a consumir tu API, REST es lo que esperan. Documentación con OpenAPI/Swagger, examples con cURL, testing con Postman.
+
+### Performance predecible
+
+Con REST, sabés exactamente qué hace cada endpoint. Con GraphQL, un cliente puede construir una query que haga 50 JOINs sin que el servidor lo anticipe. Esto se puede resolver con rate limiting y query complexity analysis, pero es trabajo extra.
+
+## Cuándo elegir GraphQL
+
+### Múltiples clientes con necesidades diferentes
+
+Si tenés una app mobile que necesita 3 campos, una web que necesita 15, y un dashboard que necesita todo — GraphQL evita que crees 3 endpoints diferentes o que la mobile baje datos que no usa.
+
+### Tu API es pública y flexible
+
+Si otros developers van a construir sobre tu API y no sabés de antemano qué datos van a necesitar, GraphQL les da libertad sin que tengas que crear endpoints a medida.
+
+### Muchas relaciones entre entidades
+
+Si tu modelo de datos tiene muchas relaciones anidadas (usuarios → organizaciones → proyectos → tareas → comentarios) y los clientes necesitan navegar esas relaciones de formas variadas, GraphQL es más expresivo que encadenar llamadas REST.
+
+### Over-fetching es un problema real
+
+Si tus endpoints REST retornan 50 campos pero la mayoría de los clientes solo necesitan 5, estás desperdiciando ancho de banda. En mobile con conexiones lentas, esto importa.
+
+## La opción híbrida
+
+No es todo o nada. Muchos proyectos exitosos usan **REST para la mayoría de endpoints** y **GraphQL para consultas complejas o dashboards**.
+
+Ejemplo:
+- REST para auth, upload de archivos, webhooks, operaciones CRUD simples
+- GraphQL para dashboards con datos agregados, búsquedas avanzadas, y reportes flexibles
+
+## Comparación técnica
+
+| Aspecto | REST | GraphQL |
+|---|---|---|
+| Complejidad de setup | Baja | Media-alta |
+| Cacheo HTTP | Nativo | Requiere librerías |
+| Documentación | OpenAPI/Swagger | Schema + playground |
+| Versionado | URLs (/v1, /v2) | Schema evolution |
+| Upload de archivos | Nativo (multipart) | Requiere spec adicional |
+| Real-time | WebSockets separado | Subscriptions nativo |
+| Over-fetching | Sí (se mitiga con sparse fieldsets) | No (el cliente elige) |
+| Under-fetching | Sí (múltiples requests) | No (todo en una query) |
+| N+1 queries en el server | No es un problema | Requiere DataLoader |
+| Curva de aprendizaje | Baja | Media |
+
+## Errores comunes
+
+### Con REST
+
+- **Endpoints inconsistentes**: `/getUsers`, `/create-user`, `/users/delete/123`. Usá convenciones: `/users` con GET/POST/PUT/DELETE.
+- **No versionar**: si cambiás la estructura de una respuesta, rompés a todos los clientes. Usá `/v1/` o headers de versión.
+- **No documentar**: sin documentación, tu API es inusable. OpenAPI/Swagger es el estándar.
+
+### Con GraphQL
+
+- **Exponer toda la base de datos**: no porque puedas hacer un query de todo significa que debas. Limitá la profundidad y complejidad de las queries.
+- **No implementar DataLoader**: sin DataLoader, cada campo resuelve una query a la base. Con 100 items y 3 relaciones, son 300 queries.
+- **Ignorar la autorización**: que un campo exista en el schema no significa que todos puedan verlo. Implementá permisos a nivel de resolver.
+
+## Tecnologías recomendadas
+
+### Para REST
+- **Node.js**: Express + OpenAPI, o Fastify
+- **Framework full**: NestJS (si te gusta la estructura tipo Spring/Django)
+- **Documentación**: Swagger UI, Redoc
+
+### Para GraphQL
+- **Node.js**: Apollo Server, o Yoga (de The Guild)
+- **Schema**: code-first con Pothos o Nexus, o schema-first con SDL
+- **Client**: Apollo Client, urql, o TanStack Query + graphql-request
+
+## Conclusión
+
+REST es el default correcto para la mayoría de los proyectos. Es más simple, más cacheable, y tiene mejor tooling. GraphQL es una herramienta poderosa para casos específicos: múltiples clientes, datos muy relacionales, o APIs públicas flexibles.
+
+No elijas GraphQL porque "es moderno" ni REST porque "es lo seguro". Elegí basado en tu caso de uso real: quién consume la API, qué datos necesita, y cuánta flexibilidad necesitás.

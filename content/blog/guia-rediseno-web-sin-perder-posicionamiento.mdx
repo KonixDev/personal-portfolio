@@ -1,0 +1,144 @@
+---
+title: "Guía para rediseñar tu sitio web sin perder posicionamiento en Google"
+description: "Cómo hacer un rediseño web manteniendo (y mejorando) tu SEO. Redirecciones, migración de contenido, velocidad y los errores que más se cometen."
+date: "2026-05-11"
+tags: ["Rediseño Web", "SEO", "Migración", "Performance"]
+vertical: "rediseno-web"
+readTime: "8 min"
+---
+
+## El miedo más común
+
+"Si rediseño mi sitio, ¿pierdo el posicionamiento que ya tengo en Google?"
+
+Es un miedo válido. Muchas empresas han visto su tráfico caer un 50% o más después de un rediseño mal ejecutado. Pero no tiene que ser así. Un rediseño bien planificado no solo mantiene tu posicionamiento — lo mejora.
+
+La clave está en los detalles técnicos que la mayoría ignora.
+
+## Antes de tocar nada: auditoría
+
+### Documentá lo que ya tenés
+
+Antes de cambiar una sola línea, registrá:
+
+- **Todas tus URLs actuales** — cada página que existe en tu sitio
+- **Keywords que ya rankean** — Google Search Console → Performance → Queries
+- **Páginas con más tráfico** — las que no podés perder bajo ningún concepto
+- **Backlinks** — otros sitios que linkean al tuyo (cada link es autoridad)
+- **Lighthouse scores** — performance, SEO, accessibility
+
+Esta información es tu línea base. Después del rediseño, vas a comparar contra estos números.
+
+### Identificá qué funciona y qué no
+
+No todo merece ser rediseñado. Si una página rankea bien y convierte, tal vez solo necesita un refresh visual, no una reestructuración. Concentrá los cambios grandes en las páginas que no funcionan.
+
+## Las 5 reglas de un rediseño SEO-safe
+
+### 1. Redirecciones 301 para cada URL que cambia
+
+Si la URL `/servicios/desarrollo-web` pasa a ser `/desarrollo-web`, necesitás una redirección 301 (permanente) de la vieja a la nueva. Sin esto, Google ve la URL nueva como una página nueva sin autoridad, y la vieja como una página que desapareció.
+
+**Cada URL vieja debe tener su redirección.** Sin excepciones.
+
+### 2. No cambies todas las URLs a la vez
+
+Si podés mantener las mismas URLs, hacelo. Cada cambio de URL es un riesgo. Si tu estructura actual funciona bien (`/blog/mi-articulo`), no la cambies a `/articulos/mi-articulo` solo por estética.
+
+### 3. Mantené (o mejorá) los meta tags
+
+Cada página debe tener su `title` y `description` optimizados. Si los actuales rankean bien, no los cambies — mejorá los de las páginas que no rankean.
+
+### 4. No eliminés contenido que rankea
+
+Si tenés un artículo de blog que trae tráfico, no lo elimines en el rediseño. Si lo movés, redireccioná. Si lo mejorás, mejor aún — pero no lo borres.
+
+### 5. Mejorá la velocidad, no la empeores
+
+Un rediseño es la oportunidad perfecta para mejorar Core Web Vitals. Si tu sitio nuevo es más lento que el viejo, vas a perder posiciones.
+
+## Migración de contenido
+
+### Textos
+
+Revisá cada página y decidí:
+- **Mantener tal cual** — si funciona, no lo toques
+- **Mejorar** — actualizar datos, mejorar redacción, agregar secciones
+- **Eliminar** — solo si no tiene tráfico ni backlinks (redireccioná a una página relacionada)
+
+### Imágenes
+
+- Optimizá el peso (WebP o AVIF en vez de PNG/JPEG)
+- Mantené los `alt` texts que ya tenés o mejoralos
+- Si cambiás las URLs de las imágenes, actualizá las referencias
+
+### URLs de archivos
+
+PDFs, documentos, recursos descargables — si cambian de ubicación, necesitan redirección.
+
+## El proceso paso a paso
+
+### Semana 1: Auditoría y planificación
+- Exportar todas las URLs actuales
+- Documentar rankings y tráfico por página
+- Mapear redirecciones (URL vieja → URL nueva)
+- Definir qué contenido se mantiene, mejora o elimina
+
+### Semanas 2-4: Desarrollo en paralelo
+- Construir el sitio nuevo en un subdominio o entorno de prueba
+- Tu sitio actual sigue funcionando sin interrupciones
+- Implementar meta tags, structured data y sitemap en el nuevo
+
+### Semana 5: Pre-lanzamiento
+- Verificar que todas las redirecciones funcionan
+- Lighthouse audit del sitio nuevo (debe ser igual o mejor)
+- Revisar que no haya links rotos internos
+- Verificar mobile responsiveness
+
+### Día de lanzamiento
+- Activar el sitio nuevo (cambio de DNS o deploy)
+- Activar las redirecciones 301
+- Verificar en Google Search Console que no hay errores de rastreo
+- Enviar el nuevo sitemap
+
+### Semanas 6-8: Monitoreo post-lanzamiento
+- Revisar Search Console diariamente por errores 404
+- Comparar tráfico vs la línea base
+- Verificar que los rankings se mantienen o mejoran
+- Corregir cualquier redirección faltante
+
+## Errores que causan pérdida de tráfico
+
+### 1. Olvidar las redirecciones
+
+El error más común y más dañino. Cada URL vieja sin redirección es tráfico perdido y autoridad desperdiciada.
+
+### 2. Bloquear el rastreo por accidente
+
+Un `robots.txt` mal configurado o un `<meta name="robots" content="noindex">` que quedó del entorno de prueba puede desindexar todo tu sitio.
+
+### 3. Cambiar la estructura de URLs sin motivo
+
+Si `/servicios/desarrollo-web` funcionaba bien, no la cambies a `/nuestros-servicios/dev-web` solo porque te gusta más. Cada cambio de URL tiene costo SEO.
+
+### 4. Sitio nuevo más lento que el anterior
+
+Animaciones pesadas, imágenes sin optimizar, JavaScript excesivo. Si el sitio nuevo tarda 5 segundos en cargar y el viejo tardaba 2, vas a perder posiciones.
+
+### 5. No monitorear después del lanzamiento
+
+Los primeros 30 días post-rediseño son críticos. Si no revisás Search Console, no vas a ver los 404 y errores de rastreo hasta que ya perdiste posiciones.
+
+## ¿Cuánto tarda en recuperarse el tráfico?
+
+Si el rediseño se hace bien (con redirecciones, sin perder contenido, con mejor velocidad):
+
+- **Semana 1-2**: puede haber una fluctuación leve (normal)
+- **Semana 3-4**: el tráfico debería estabilizarse
+- **Mes 2-3**: mejora gradual si la velocidad y el contenido son mejores
+
+Si el tráfico cae más del 20% y no se recupera en 2 semanas, revisá redirecciones faltantes y errores en Search Console.
+
+## Conclusión
+
+Un rediseño web no tiene que ser sinónimo de perder posicionamiento. Con planificación, redirecciones correctas y monitoreo post-lanzamiento, podés transformar tu sitio y mejorar tu SEO al mismo tiempo. La clave: no improvisar, documentar todo antes, y tener un plan de redirecciones completo antes de hacer el switch.

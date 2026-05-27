@@ -1,0 +1,119 @@
+---
+title: "Cómo optimizar un sistema lento sin reescribirlo desde cero"
+description: "Guía práctica para encontrar y solucionar cuellos de botella en sistemas existentes. Queries, cache, infraestructura y monitoreo — sin tirar todo y empezar de nuevo."
+date: "2026-05-15"
+tags: ["Optimización", "Performance", "Backend", "Base de datos"]
+vertical: "optimizacion-sistemas"
+readTime: "9 min"
+---
+
+## El impulso de tirar todo y empezar de nuevo
+
+Cuando un sistema se vuelve lento, la tentación es reescribirlo desde cero. Parece más limpio, más satisfactorio. Pero en la práctica, es casi siempre la peor decisión: tardás meses, gastás más, y terminás con un sistema nuevo que tiene bugs nuevos.
+
+La alternativa: **diagnosticar, priorizar y corregir quirúrgicamente**. El 80% de los problemas de performance vienen del 20% del código — encontralo y arreglalo.
+
+## Paso 1: Medir antes de cambiar nada
+
+No se puede optimizar lo que no se mide. Antes de tocar una línea de código, necesitás datos.
+
+### Métricas que importan
+
+- **Tiempo de respuesta por endpoint** — ¿cuáles tardan más de 500ms?
+- **Queries más lentas** — ¿cuáles tardan más de 100ms?
+- **Uso de memoria y CPU** — ¿hay picos? ¿crecimiento constante (memory leak)?
+- **Error rate** — ¿cuántos requests fallan?
+- **Throughput** — ¿cuántos requests por segundo soporta?
+
+### Herramientas
+
+- **PostgreSQL**: `pg_stat_statements` para queries lentas, `EXPLAIN ANALYZE` para planes de ejecución
+- **Node.js**: `clinic.js` para profiling, `0x` para flame graphs
+- **Infraestructura**: Grafana + Prometheus, o servicios como Sentry y Datadog
+- **Frontend**: Lighthouse, Web Vitals, Chrome DevTools Performance tab
+
+## Paso 2: Los sospechosos habituales
+
+### Queries sin índices
+
+Es la causa #1 de sistemas lentos. Una query que recorre una tabla de 1 millón de filas sin índice tarda segundos. Con el índice correcto, milisegundos.
+
+**Cómo detectarlo**: buscá queries con `Seq Scan` en el `EXPLAIN ANALYZE`. Si una tabla grande se recorre secuencialmente en una query frecuente, necesita un índice.
+
+**Cómo solucionarlo**: creá índices en las columnas que aparecen en `WHERE`, `JOIN` y `ORDER BY`. No indexes todo — cada índice tiene costo en escrituras.
+
+### N+1 queries
+
+El problema: tu código hace 1 query para traer una lista, y después N queries más (una por cada item) para traer datos relacionados. Si la lista tiene 100 items, son 101 queries.
+
+**Cómo detectarlo**: si ves la misma query repetida decenas de veces en los logs, tenés un N+1.
+
+**Cómo solucionarlo**: usá `JOIN`, `IN ()`, o eager loading del ORM. En Prisma: `include`. En SQL puro: `LEFT JOIN`.
+
+### No hay cache
+
+Si tu app consulta la base de datos cada vez que alguien pide la misma información, estás desperdiciando recursos.
+
+**Qué cachear**:
+- Datos que cambian poco (catálogos, configuración, menús)
+- Resultados de queries costosas (reportes, agregaciones)
+- Sesiones de usuario
+- Respuestas de APIs de terceros
+
+**Cómo implementarlo**: Redis es el estándar. Definí un TTL (tiempo de vida) razonable para cada tipo de dato. Invalidá el cache cuando los datos cambian.
+
+### Procesos sincrónicos que deberían ser asincrónicos
+
+Si tu endpoint de "crear pedido" también envía un email, genera un PDF, actualiza un CRM y notifica por WhatsApp, va a tardar 10 segundos. El usuario no necesita esperar todo eso.
+
+**Solución**: mové todo lo que no es crítico para la respuesta a una cola de trabajo (BullMQ, SQS). El endpoint retorna en 200ms y los procesos se ejecutan en segundo plano.
+
+## Paso 3: Infraestructura
+
+### Connection pooling
+
+Si cada request abre una nueva conexión a la base de datos, vas a saturar el límite rápidamente. Usá un connection pooler (PgBouncer para PostgreSQL) que reutiliza conexiones.
+
+### Rightsizing de servidores
+
+Muchas empresas pagan por servidores más grandes de lo que necesitan — o más chicos, que se saturan en picos.
+
+**Cómo saberlo**: mirá el uso promedio de CPU y memoria. Si está al 15% constante, tu servidor es demasiado grande. Si llega al 90% en picos, necesitás auto-scaling o un upgrade.
+
+### CDN para assets estáticos
+
+Imágenes, CSS, JavaScript y fuentes deberían servirse desde un CDN (Cloudflare, CloudFront). Reduce la carga del servidor y mejora los tiempos de carga para usuarios en distintas ubicaciones.
+
+## Paso 4: Monitoreo continuo
+
+De nada sirve optimizar si no monitoreás que las mejoras se mantengan. Configurá:
+
+- **Alertas** cuando el tiempo de respuesta supere un umbral
+- **Dashboard** con las métricas clave visibles en todo momento
+- **Logs estructurados** para poder buscar y filtrar errores rápidamente
+- **Revisión periódica** de queries lentas (mensual como mínimo)
+
+## Cuánto se puede mejorar
+
+Resultados típicos de una optimización bien hecha:
+
+- **Queries sin índices → con índices**: 10x — 100x más rápido
+- **N+1 → query única**: 5x — 50x menos queries
+- **Sin cache → con Redis**: 90% menos carga en la base de datos
+- **Sync → async**: endpoints de 5s a 200ms
+- **Rightsizing**: 40-70% menos costo de infraestructura
+
+## Cuándo sí hay que reescribir
+
+Reescribir tiene sentido cuando:
+
+- El lenguaje o framework ya no tiene soporte ni comunidad
+- La arquitectura hace imposible escalar (monolito de 500k líneas sin tests)
+- No hay nadie que entienda el código existente
+- El costo de mantener supera el costo de rehacer
+
+Pero incluso en estos casos, la recomendación es **migrar por partes**, no tirar todo de una.
+
+## Conclusión
+
+Optimizar es casi siempre más rápido, más barato y menos riesgoso que reescribir. Medí, encontrá los cuellos de botella, y corregí lo que más impacta primero. El 80% del problema probablemente son queries sin índices, falta de cache, y procesos que no deberían ser sincrónicos.
