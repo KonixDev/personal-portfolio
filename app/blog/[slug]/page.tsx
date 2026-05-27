@@ -6,6 +6,7 @@ import { FooterReveal } from "../../components/footer-reveal";
 import { FaqJsonLd } from "../../components/json-ld";
 import { getAllSlugs, getPostBySlug } from "@/lib/blog";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 import Link from "next/link";
 
 export function generateStaticParams() {
@@ -83,7 +84,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
             <div className="divider mt-10 mb-10" />
 
             <div className="prose-custom">
-              <MDXRemote source={post.content} />
+              <MDXRemote source={post.content} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
             </div>
 
             {vertical && (
