@@ -11,12 +11,17 @@ import { Contact } from "./components/contact";
 import { Marquee } from "./components/marquee";
 import { Footer } from "./components/footer";
 import { FooterReveal } from "./components/footer-reveal";
+import { OrganizationJsonLd, LocalBusinessJsonLd, FaqJsonLd } from "./components/json-ld";
+import { faqs } from "@/lib/site-config";
 
 export default function Page() {
   return (
     <FooterReveal
       main={
         <>
+          <OrganizationJsonLd />
+          <LocalBusinessJsonLd />
+          <FaqJsonLd items={faqs.map(f => ({ q: f.q, a: f.a }))} />
           <Header />
           <Hero />
           <div className="divider" />
