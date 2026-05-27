@@ -194,11 +194,11 @@ html, body {
 /* ── Section spacing ───────────────────────────────────────── */
 
 .section-padding {
-  padding: 80px 24px;
+  padding: 56px 20px;
 }
 @media (min-width: 768px) {
   .section-padding {
-    padding: 120px 80px;
+    padding: 100px 48px;
   }
 }
 @media (min-width: 1280px) {

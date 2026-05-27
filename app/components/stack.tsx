@@ -7,12 +7,12 @@ import Image from "next/image";
 
 
 const positions = [
-  { x: 8, y: 8 },
-  { x: 75, y: 6 },
-  { x: 3, y: 45 },
-  { x: 85, y: 50 },
-  { x: 15, y: 78 },
-  { x: 72, y: 82 },
+  { x: 6, y: 12 },
+  { x: 70, y: 10 },
+  { x: 3, y: 40 },
+  { x: 75, y: 46 },
+  { x: 10, y: 74 },
+  { x: 68, y: 78 },
 ];
 
 export function Stack() {
@@ -27,7 +27,7 @@ export function Stack() {
   const progressWidth = useTransform(scrollYProgress, [0.1, 0.65], ["0%", "100%"]);
 
   return (
-    <div ref={containerRef} className="relative h-[250vh]">
+    <div ref={containerRef} className="relative h-[180vh] md:h-[250vh]">
       <div className="sticky top-0 grid h-screen place-items-center overflow-hidden">
         {projects.map((project, i) => {
           const pos = positions[i];
@@ -53,7 +53,7 @@ export function Stack() {
                 alt={project.name}
                 width={80}
                 height={80}
-                className="h-14 w-14 object-contain md:h-20 md:w-20"
+                className="h-10 w-10 object-contain md:h-14 md:w-14 lg:h-20 lg:w-20"
                 unoptimized
               />
             </motion.a>
@@ -64,7 +64,7 @@ export function Stack() {
           style={{ opacity: counterOpacity, scale: counterScale }}
           className="relative z-10 grid place-items-center gap-y-8 text-center"
         >
-          <p className="text-[20px] font-semibold tracking-tight text-[var(--color-text-secondary)]">
+          <p className="text-[16px] font-semibold tracking-tight text-[var(--color-text-secondary)] md:text-[20px]">
             Productos propios en producción
           </p>
 

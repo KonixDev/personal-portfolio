@@ -38,7 +38,7 @@ export function Pricing() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.15 + i * 0.08 }}
               className={
-                "relative flex min-h-[560px] flex-col gap-6 rounded-2xl border px-8 py-10 " +
+                "relative flex min-h-[480px] flex-col gap-6 rounded-2xl border px-6 py-8 md:min-h-[560px] md:px-8 md:py-10 " +
                 (isFeat
                   ? "border-[var(--color-bg-inverse)] bg-[var(--color-bg-inverse)] text-[var(--color-text-inverse)]"
                   : "border-[var(--color-border)] bg-white")

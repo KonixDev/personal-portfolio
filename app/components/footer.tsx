@@ -36,7 +36,7 @@ export function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className="bg-[var(--color-bg-inverse)] text-[var(--color-text-inverse)]">
-      <div className="mx-auto max-w-[1280px] px-6 pt-20 pb-8 md:px-12 lg:px-[116px] lg:pt-[104px]">
+      <div className="mx-auto max-w-[1280px] px-5 pt-12 pb-6 md:px-12 md:pt-20 lg:px-[116px] lg:pt-[104px]">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[1fr_1fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2">

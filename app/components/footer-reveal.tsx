@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState, useEffect } from "react";
 
 export function FooterReveal({
   main,
@@ -11,9 +11,17 @@ export function FooterReveal({
 }) {
   const footerRef = useRef<HTMLDivElement>(null);
   const [footerH, setFooterH] = useState(500);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   useLayoutEffect(() => {
-    if (!footerRef.current) return;
+    if (!footerRef.current || isMobile) return;
     const measure = () => {
       const h = footerRef.current?.offsetHeight ?? 500;
       setFooterH(h);
@@ -21,7 +29,16 @@ export function FooterReveal({
     measure();
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
-  }, []);
+  }, [isMobile]);
+
+  if (isMobile) {
+    return (
+      <>
+        <div className="min-h-screen bg-[var(--color-bg)]">{main}</div>
+        <div>{footer}</div>
+      </>
+    );
+  }
 
   return (
     <div className="relative bg-[var(--color-bg-inverse)]">

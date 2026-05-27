@@ -48,14 +48,14 @@ export function Services() {
         initial={{ opacity: 0, y: 12 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.15 }}
-        className="mt-10 flex items-center gap-2 rounded-full bg-[var(--color-bg-secondary)] p-1"
+        className="mt-10 flex flex-col items-stretch gap-1 rounded-2xl bg-[var(--color-bg-secondary)] p-1 sm:flex-row sm:items-center sm:gap-2 sm:rounded-full"
       >
         {categories.map((c, i) => (
           <button
             key={c.tab}
             onClick={() => setActive(i)}
             className={
-              "rounded-full px-5 py-2.5 text-[14px] font-semibold transition-all " +
+              "rounded-xl px-4 py-2.5 text-[13px] font-semibold transition-all sm:rounded-full sm:px-5 sm:text-[14px] " +
               (active === i
                 ? "bg-[var(--color-bg-inverse)] text-[var(--color-text-inverse)]"
                 : "text-[var(--color-text-secondary)] hover:text-[var(--color-text)]")

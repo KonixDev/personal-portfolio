@@ -9,7 +9,7 @@ export function Contact() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="contacto" ref={ref} className="grid place-items-center px-6 pt-20 pb-8 md:px-12 md:pt-24 md:pb-10">
+    <section id="contacto" ref={ref} className="grid place-items-center px-5 pt-14 pb-6 md:px-12 md:pt-24 md:pb-10">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -33,7 +33,7 @@ export function Contact() {
         initial={{ opacity: 0, y: 12 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="mt-8 flex flex-wrap items-center justify-center gap-3"
+        className="mt-6 flex flex-col items-center gap-3 sm:flex-row md:mt-8"
       >
         <a
           href={waLink("Hola Martín, quiero agendar una llamada para conversar un proyecto.")}

@@ -14,7 +14,7 @@ const trustedLogos = [
 
 export function Hero() {
   return (
-    <section id="top" className="grid place-items-center px-5 pt-[140px] pb-16 md:px-6 md:pt-[180px] md:pb-20">
+    <section id="top" className="grid place-items-center px-5 pt-[120px] pb-12 md:px-6 md:pt-[180px] md:pb-20">
       <div className="grid place-items-center text-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -28,7 +28,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease }}
-          className="text-showcase mt-8 max-w-[800px] text-center"
+          className="text-showcase mt-6 max-w-[800px] text-center md:mt-8"
         >
           Software a medida, potenciado por IA.
         </motion.h1>
@@ -48,7 +48,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3, ease }}
-          className="mt-8 flex items-center gap-3"
+          className="mt-6 flex flex-col items-center gap-3 sm:flex-row md:mt-8"
         >
           <a
             href={waLink("Hola Martín, quiero empezar un proyecto.")}

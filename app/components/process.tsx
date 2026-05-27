@@ -62,7 +62,7 @@ export function Process() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.15 + i * 0.1 }}
             className={
-              "relative flex flex-col gap-4 p-8 " +
+              "relative flex flex-col gap-4 p-6 md:p-8 " +
               (i < steps.length - 1 ? "border-b md:border-b-0 md:border-r" : "") +
               " border-[var(--color-border)]"
             }

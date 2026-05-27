@@ -41,7 +41,7 @@ export function Included() {
       </motion.p>
 
       {/* Top 3 highlights — large cards */}
-      <div className="mt-16 grid w-full max-w-[1100px] grid-cols-1 gap-5 md:grid-cols-3">
+      <div className="mt-10 grid w-full max-w-[1100px] grid-cols-1 gap-4 md:mt-16 md:grid-cols-3 md:gap-5">
         {highlights.map((item, i) => (
           <motion.div
             key={item.title}
@@ -66,7 +66,7 @@ export function Included() {
       </div>
 
       {/* Remaining items — compact checklist in 2 columns */}
-      <div className="mt-8 grid w-full max-w-[1100px] grid-cols-1 gap-x-12 gap-y-5 rounded-2xl border border-[var(--color-border)] bg-white px-8 py-8 md:grid-cols-2 md:px-12 md:py-10">
+      <div className="mt-6 grid w-full max-w-[1100px] grid-cols-1 gap-x-12 gap-y-5 rounded-2xl border border-[var(--color-border)] bg-white px-5 py-6 md:mt-8 md:grid-cols-2 md:px-12 md:py-10">
         {rest.map((item, i) => (
           <motion.div
             key={item.title}
