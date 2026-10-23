@@ -69,7 +69,7 @@ export function Stack() {
           </p>
 
           <div className="flex flex-col items-center gap-3">
-            <AnimatedCounter label="productos live" end={6} scrollProgress={scrollYProgress} range={[0.15, 0.35]} />
+            <AnimatedCounter label="productos live" end={3} scrollProgress={scrollYProgress} range={[0.15, 0.35]} />
             <AnimatedCounter label="usuarios activos" end={2400} suffix="+" scrollProgress={scrollYProgress} range={[0.2, 0.4]} />
             <AnimatedCounter label="commits en el último año" end={12000} suffix="+" scrollProgress={scrollYProgress} range={[0.25, 0.45]} />
           </div>

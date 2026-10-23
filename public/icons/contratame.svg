@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Contratame favicon. White ("paper") rounded square + Inter-style "C." -->
+  <!-- The dot is the brand green #0f7849. -->
+  <rect width="64" height="64" rx="12" fill="#0f7849" />
+  <text
+    x="50%"
+    y="50%"
+    dominant-baseline="central"
+    text-anchor="middle"
+    font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', sans-serif"
+    font-size="40"
+    font-weight="700"
+    fill="#ffffff"
+    letter-spacing="-2"
+  >C.</text>
+</svg>

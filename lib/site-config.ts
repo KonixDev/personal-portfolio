@@ -32,30 +32,6 @@ export const services = [
 
 export const projects = [
   {
-    name: "Pendi",
-    url: "https://pendi.app",
-    desc: "Gestor de tareas simple para equipos",
-    og: "https://pendi.app/opengraph-image?63467f0377e80316",
-    icon: "/icons/pendi.svg",
-    color: "#6366F1",
-  },
-  {
-    name: "Tata",
-    url: "https://tata.com.ar",
-    desc: "Agente IA para oficios vía WhatsApp",
-    og: "https://tata.com.ar/opengraph-image?04e9660045f053bf",
-    icon: "/icons/tata.svg",
-    color: "#22C55E",
-  },
-  {
-    name: "Mibio",
-    url: "https://mibio.app",
-    desc: "Tu negocio en un link",
-    og: "https://mibio.app/opengraph-image?97980d843f6d4461",
-    icon: "/icons/mibio.svg",
-    color: "#F59E0B",
-  },
-  {
     name: "useDeploy",
     url: "https://usedeploy.dev",
     desc: "Plantilla base para lanzar productos SaaS",
@@ -72,17 +48,17 @@ export const projects = [
     color: "#EF4444",
   },
   {
-    name: "LatamServers",
-    url: "https://latamservers.com",
-    desc: "Directorio de servidores gaming LATAM",
-    og: "https://latamservers.com/opengraph-image?c6ce7a4c0269a4d2",
-    icon: "/icons/latamservers.svg",
-    color: "#8B5CF6",
+    name: "Contratame",
+    url: "https://contratame.com.ar",
+    desc: "Profesionales verificados en Argentina",
+    og: "https://contratame.com.ar/opengraph-image?d98a118edc25833a",
+    icon: "/icons/contratame.svg",
+    color: "#111111",
   },
 ] as const;
 
 export const stats = [
-  { value: "6+", label: "Productos en producción" },
+  { value: "3", label: "Productos en producción" },
   { value: "2022", label: "Construyendo · est." },
   { value: "4–10", label: "Semanas de idea a lanzamiento" },
   { value: "100%", label: "Proyectos entregados en plazo" },
